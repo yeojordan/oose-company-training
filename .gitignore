@@ -1,0 +1,10 @@
+# Class Files
+*.class
+
+# LaTex
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.tex.*
