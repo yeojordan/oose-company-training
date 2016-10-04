@@ -1,7 +1,11 @@
+package controller;
+
+import model.*;
+
 import java.util.*;
 import java.io.*;
 
-public class ReadProperty //extends FileReading
+public class ReadProperty extends FileReading
 {
     private List<PropertyEntry> properties;
 
@@ -12,6 +16,8 @@ public class ReadProperty //extends FileReading
 
     public List<PropertyEntry> readFile(String filename)
     {
+        String[] result = new String[6];
+        PropertyEntry entry = null;
         try
         {
             Scanner input = null;
@@ -19,13 +25,19 @@ public class ReadProperty //extends FileReading
 
             input = new Scanner(file);
 
-
+            String firstLine = input.nextLine();
             while (input.hasNextLine())
             {
                 String line = input.nextLine();
-                String result = line.split(",");
-                
-                System.out.println(line);
+                result = line.split(",", -1);
+                entry = new PropertyEntry(result);
+                entry.printEntry();
+                //System.out.println(line);
+                // for (String val: result)
+                // {
+                //     System.out.print(val + ",");
+                // }
+                // System.out.println();
             }
             input.close();
 
