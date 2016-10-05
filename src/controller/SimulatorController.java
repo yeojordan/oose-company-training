@@ -3,11 +3,14 @@ package controller;
 import java.util.*;
 
 import model.*;
+import view.*;
 
 public class SimulatorController
 {
     private Map<String, Property> propertyMap;
     private List<Event> eventList;
+
+    private SimulatorView view;
     // private List<Event> eventList;
 
 
@@ -16,6 +19,8 @@ public class SimulatorController
         //propertyList = new HashMap<Property>();
         this.propertyMap = properties;
         this.eventList = events;
+
+        view = new SimulatorView();
     }
     //
     // public void setProperty(Map<Property> properties)
@@ -31,17 +36,20 @@ public class SimulatorController
 
     public void printProperties()
     {
-        for(Property prop : propertyMap.values() )
-        {
-            System.out.println(prop.toString());
-        }
+        // for(Property prop : propertyMap.values() )
+        // {
+        //     System.out.println(prop.toString());
+        // }
+        view.displayProperties(propertyMap);
     }
 
     public void printEvents()
     {
-        for(Event ev : eventList)
-        {
-            System.out.println(ev.toString());
-        }
+        // for(Event ev : eventList)
+        // {
+        //     System.out.println(ev.toString());
+        // }
+
+        view.displayEvents(eventList);
     }
 }

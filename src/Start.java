@@ -19,19 +19,26 @@ public class Start
         int startYear       =   Integer.parseInt(args[3]);
         int endYear         =   Integer.parseInt(args[4]);;
 
+
+        // Initialise models
+        Map<String, Property> props = new HashMap<String, Property>();
+        List<Event> events = new LinkedList<Event>();
+
+
         SimulatorController controller = null;
 
-        Map<String, Property> props = new HashMap<String, Property>();
+        // Perform file reading for Property file
         FileReading fileReader = new ReadProperty(props);
         fileReader.read(propertyFile);
-        List<Event> events = new LinkedList<Event>();
+
+        // Perform file reading for Event file
         fileReader = new ReadEvent(events);
-
-
         fileReader.read(eventFile);
+
+
         controller = new SimulatorController(props, events);
 
-
+        // Print Models
         controller.printProperties();
         controller.printEvents();
 
