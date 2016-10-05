@@ -21,9 +21,9 @@ public class ReadProperty extends FileReading
         String name  = line[0];
         char type    = line[1].charAt(0);
         String owner = line[2];
-        int worth    = valueValidation(line[3]);
-        int revenue  = valueValidation(line[4]);
-        int wages    = valueValidation(line[5]);
+        double worth    = valueValidation(line[3]);
+        double revenue  = valueValidation(line[4]);
+        double wages    = valueValidation(line[5]);
 
         // If entry is a Company
         if ( type == 'C' )
@@ -46,28 +46,17 @@ public class ReadProperty extends FileReading
     }
 
 
-    public int valueValidation(String value)
+    public double valueValidation(String value)
     {
-        int val;
+        double val;
         val = 0;
         if ( !(value.equals("")) && value != null )
         {
-            val =  stringToInt(value);
+            val =  Double.parseDouble(value);
         }
 
         return val;
     }
-
-    // Convert String to an integer value
-    public int stringToInt(String value)
-    {
-        Integer integerVal = new Integer(value);
-        int val = integerVal.intValue();
-
-        return val;
-
-    }
-
 
 
 }

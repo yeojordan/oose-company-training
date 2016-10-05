@@ -17,12 +17,12 @@ public class Start
         String planFile     = args[2];
         int startYear       = Integer.parseInt(args[3]);
         int endYear         = Integer.parseInt(args[4]);;
-        
+
         SimulatorController controller = new SimulatorController();
 
         FileReading fileReader = new ReadProperty(controller);
 
-        fileReader.read("propertyfile.txt");
+        fileReader.read(propertyFile);
 
         controller.printProperties();
 

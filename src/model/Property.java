@@ -4,8 +4,8 @@ import java.util.*;
 
 public abstract class Property
 {
-    private int monetaryValue;
-    private int profit;
+    private double monetaryValue;
+    private double profit;
 
     private String name;
     private String owner;
@@ -26,7 +26,7 @@ public abstract class Property
         this.owner = owner;
     }
 
-    public void setMonetaryValue(int value)
+    public void setMonetaryValue(double value)
     {
         this.monetaryValue = value;
     }
@@ -51,7 +51,7 @@ public abstract class Property
         return this.owner;
     }
 
-    public int getMonetaryValue()
+    public double getMonetaryValue()
     {
         return this.monetaryValue;
     }

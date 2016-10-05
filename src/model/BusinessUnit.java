@@ -2,10 +2,10 @@ package model;
 
 public class BusinessUnit extends Property
 {
-    private int revenue;
-    private int wages;
+    private double revenue;
+    private double wages;
 
-    public BusinessUnit(int rev, int wages)
+    public BusinessUnit(double rev, double wages)
     {
         this.revenue = rev;
         this.wages = wages;
