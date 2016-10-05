@@ -12,22 +12,28 @@ public class Start
             throw new IllegalArgumentException("Incorrect number of command line args");
         }
 
-        String propertyFile = args[0];
-        String eventFile    = args[1];
-        String planFile     = args[2];
-        int startYear       = Integer.parseInt(args[3]);
-        int endYear         = Integer.parseInt(args[4]);;
+        // Organise command line parameters
+        String propertyFile =   args[0];
+        String eventFile    =   args[1];
+        String planFile     =   args[2];
+        int startYear       =   Integer.parseInt(args[3]);
+        int endYear         =   Integer.parseInt(args[4]);;
 
         SimulatorController controller = null;
 
         Map<String, Property> props = new HashMap<String, Property>();
         FileReading fileReader = new ReadProperty(props);
-
-        
-
         fileReader.read(propertyFile);
-        controller = new SimulatorController(props);
+        List<Event> events = new LinkedList<Event>();
+        fileReader = new ReadEvent(events);
+
+
+        fileReader.read(eventFile);
+        controller = new SimulatorController(props, events);
+
+
         controller.printProperties();
+        controller.printEvents();
 
     }
 }
