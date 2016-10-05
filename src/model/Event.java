@@ -16,9 +16,9 @@ public class Event
     public String toString()
     {
         String toString = "";
-        toString = toString + "Year:  " + year + "\n";
-        toString = toString + "Event: " + event + "\n";
-        toString = toString + "Year:  " + property + "\n";
+        toString = toString + "Year:      " + year + "\n";
+        toString = toString + "Event:     " + event + "\n";
+        toString = toString + "Property:  " + property + "\n";
 
         return toString;
     }
