@@ -16,11 +16,10 @@ public class ReadProperty extends FileReading
 
     public void processLine(String[] line)
     {
-        Property prop = null;
-
-        String name  = line[0];
-        char type    = line[1].charAt(0);
-        String owner = line[2];
+        Property prop   = null;
+        String name     = line[0];
+        char type       = line[1].charAt(0);
+        String owner    = line[2];
         double worth    = valueValidation(line[3]);
         double revenue  = valueValidation(line[4]);
         double wages    = valueValidation(line[5]);
@@ -28,7 +27,12 @@ public class ReadProperty extends FileReading
         // If entry is a Company
         if ( type == 'C' )
         {
+            if ( !line[4].equals("") || !line[5].equals("") )
+            {
+                throw new IllegalArgumentException("Invalid Property File");
+            }
             prop = new Company();
+
         }
         // If entry is a Business Unit
         else if ( type == 'B' )
