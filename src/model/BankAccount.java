@@ -7,18 +7,23 @@ public class BankAccount extends Property
     public BankAccount()
     {
         owner = null;
+        super();
     }
 
-    // public void setValue(int value)
-    // {
-    //     this.monetaryValue = value;
-    // }
-    //
-    // public void setProfit(int profit)
-    // {
-    //     this.profit = profit;
-    // }
-    //
+    public void setValue(double monetaryValue)
+    {
+        super.setMonetaryValue(monetaryValue);
+    }
+
+    public void getProfit(double profit)
+    {
+
+        // Calculate profit
+
+        // Store profit
+        super.setProfit(profit);
+    }
+
     // public int getValue()
     // {
     //     return this.monetaryValue;
