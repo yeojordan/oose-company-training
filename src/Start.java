@@ -23,7 +23,7 @@ public class Start
         // Initialise models
         Map<String, Property> props = new HashMap<String, Property>();
         List<Event> events = new LinkedList<Event>();
-
+        List<Plan> plans = new LinkedList<Plan>();
 
         SimulatorController controller = null;
 
@@ -35,12 +35,16 @@ public class Start
         fileReader = new ReadEvent(events);
         fileReader.read(eventFile);
 
+        // Perform file reading for Plan file
+        fileReader = new ReadPlan(plans);
+        fileReader.read(planFile);
 
-        controller = new SimulatorController(props, events);
+        controller = new SimulatorController(props, events, plans);
 
         // Print Models
         controller.printProperties();
         controller.printEvents();
+        controller.printPlans();
 
     }
 }

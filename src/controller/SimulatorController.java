@@ -9,47 +9,33 @@ public class SimulatorController
 {
     private Map<String, Property> propertyMap;
     private List<Event> eventList;
+    private List<Plan> planList;
 
     private SimulatorView view;
     // private List<Event> eventList;
 
 
-    public SimulatorController(Map<String, Property> properties, List<Event> events)
+    public SimulatorController(Map<String, Property> properties, List<Event> events, List<Plan> plans)
     {
-        //propertyList = new HashMap<Property>();
         this.propertyMap = properties;
         this.eventList = events;
-
+        this.planList = plans;
         view = new SimulatorView();
     }
-    //
-    // public void setProperty(Map<Property> properties)
-    // {
-    //     this.propertyList = properties;
-    // }
-
-
-    // public void addProperty(Property property)
-    // {
-    //     propertyList.add(property);
-    // }
 
     public void printProperties()
     {
-        // for(Property prop : propertyMap.values() )
-        // {
-        //     System.out.println(prop.toString());
-        // }
+
         view.displayProperties(propertyMap);
     }
 
     public void printEvents()
     {
-        // for(Event ev : eventList)
-        // {
-        //     System.out.println(ev.toString());
-        // }
-
         view.displayEvents(eventList);
+    }
+
+    public void printPlans()
+    {
+        view.displayPlans(planList);
     }
 }

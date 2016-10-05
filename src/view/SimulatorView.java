@@ -22,6 +22,13 @@ public class SimulatorView
         {
             System.out.println(ev.toString());
         }
+    }
 
+    public void displayPlans(List<Plan> planList)
+    {
+        for(Plan plan : planList)
+        {
+            System.out.println(plan.toString());
+        }
     }
 }

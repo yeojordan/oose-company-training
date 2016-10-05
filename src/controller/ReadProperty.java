@@ -7,7 +7,7 @@ import java.io.*;
 
 public class ReadProperty extends FileReading
 {
-    //private SimulatorController controller;
+
     private Map<String, Property> properties;
 
     public ReadProperty(Map<String, Property> props)
@@ -47,8 +47,6 @@ public class ReadProperty extends FileReading
         prop.setMonetaryValue(worth);
 
         // Add to Property List in Controller
-        //controller.addProperty(prop);
-
         properties.put(prop.getName(), prop);
 
     }
