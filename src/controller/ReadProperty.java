@@ -7,22 +7,23 @@ import java.io.*;
 
 public class ReadProperty extends FileReading
 {
-    private SimulatorController controller;
+    //private SimulatorController controller;
+    private List<Property> properties;
 
-    public ReadProperty(SimulatorController controller)
+    public ReadProperty(List<Property> props)
     {
-        this.controller = controller;
+        this.properties = props;
     }
 
     public void processLine(String[] line)
     {
-        Property prop   = null;
-        String name     = line[0];
-        char type       = line[1].charAt(0);
-        String owner    = line[2];
-        double worth    = valueValidation(line[3]);
-        double revenue  = valueValidation(line[4]);
-        double wages    = valueValidation(line[5]);
+        Property prop   =   null;
+        String name     =   line[0];
+        char type       =   line[1].charAt(0);
+        String owner    =   line[2];
+        double worth    =   valueValidation(line[3]);
+        double revenue  =   valueValidation(line[4]);
+        double wages    =   valueValidation(line[5]);
 
         // If entry is a Company
         if ( type == 'C' )
@@ -46,7 +47,10 @@ public class ReadProperty extends FileReading
         prop.setMonetaryValue(worth);
 
         // Add to Property List in Controller
-        controller.addProperty(prop);
+        //controller.addProperty(prop);
+
+        properties.add(prop);
+
     }
 
 

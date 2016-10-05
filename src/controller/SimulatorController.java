@@ -15,6 +15,12 @@ public class SimulatorController
         propertyList = new LinkedList<Property>();
     }
 
+    public void setProperty(List<Property> properties)
+    {
+        this.propertyList = properties;
+    }
+
+    
     public void addProperty(Property property)
     {
         propertyList.add(property);

@@ -6,7 +6,7 @@ import java.io.*;
 public abstract class FileReading
 {
 
-    private SimulatorController controller;
+    //private SimulatorController controller;
 
     // public FileReading(SimulatorController controller)
     // {

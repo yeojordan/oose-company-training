@@ -20,15 +20,12 @@ public class Start
 
         SimulatorController controller = new SimulatorController();
 
-        FileReading fileReader = new ReadProperty(controller);
+        List<Property> props = new LinkedList<Property>();
+        FileReading fileReader = new ReadProperty(props);
 
         fileReader.read(propertyFile);
-
+        controller.setProperty(props);
         controller.printProperties();
 
-        // for (PropertyEntry p : propEntries )
-        // {
-        //     p.printEntry();
-        // }
     }
 }
