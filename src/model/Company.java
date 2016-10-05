@@ -20,13 +20,36 @@ public class Company extends Property
         return toString;
     }
 
+
     public void setBankValue(double monetaryValue, double profit)
     {
         bank.setMonetaryValue(monetaryValue)
     }
 
 
+    public void addProperty(Property property)
+    {
+        String name;
 
+        // Check if the property is a Company or Business Unit before
+        // adding it to the map of properties owned by the Company
+        if (property instanceof Company )
+        {
+            name = (Company)property.getName();
+
+        }
+        else if ( property instanceof BusinessUnit)
+        {
+            name = (BusinessUnit)property.getName();
+        }
+
+        // Insert only if the current key is not already used. 
+        if ( !this.owns.contains(name) )
+        {
+            (this.owns).put(name, property);
+        }
+
+    }
 
 
 }

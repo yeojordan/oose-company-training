@@ -8,7 +8,7 @@ public class Plan
 
     public Plan(int year, char decision, String property)
     {
-        this.year = year;
+        this.year     = year;
         this.decision = decision;
         this.property = property;
     }
