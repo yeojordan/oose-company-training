@@ -8,9 +8,9 @@ import java.io.*;
 public class ReadProperty extends FileReading
 {
     //private SimulatorController controller;
-    private List<Property> properties;
+    private Map<String, Property> properties;
 
-    public ReadProperty(List<Property> props)
+    public ReadProperty(Map<String, Property> props)
     {
         this.properties = props;
     }
@@ -49,7 +49,7 @@ public class ReadProperty extends FileReading
         // Add to Property List in Controller
         //controller.addProperty(prop);
 
-        properties.add(prop);
+        properties.put(prop.getName(), prop);
 
     }
 

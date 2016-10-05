@@ -18,13 +18,15 @@ public class Start
         int startYear       = Integer.parseInt(args[3]);
         int endYear         = Integer.parseInt(args[4]);;
 
-        SimulatorController controller = new SimulatorController();
+        SimulatorController controller = null;
 
-        List<Property> props = new LinkedList<Property>();
+        Map<String, Property> props = new HashMap<String, Property>();
         FileReading fileReader = new ReadProperty(props);
 
+        
+
         fileReader.read(propertyFile);
-        controller.setProperty(props);
+        controller = new SimulatorController(props);
         controller.printProperties();
 
     }
