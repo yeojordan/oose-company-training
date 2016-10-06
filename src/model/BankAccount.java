@@ -6,8 +6,9 @@ public class BankAccount extends Property
 
     public BankAccount()
     {
-        owner = null;
         super();
+        owner = null;
+
     }
 
     public void setValue(double monetaryValue)
@@ -15,13 +16,13 @@ public class BankAccount extends Property
         super.setMonetaryValue(monetaryValue);
     }
 
-    public void getProfit(double profit)
+    public void getProfit()
     {
-        double profit;
+        double newProfit;
         // Calculate profit
-        profit = this.getMonetaryValue() * 0.05;
+        newProfit = this.getMonetaryValue() * 0.05;
         // Store profit
-        super.setProfit(profit);
+        //super.setProfit(profit);
     }
 
     // public int getValue()

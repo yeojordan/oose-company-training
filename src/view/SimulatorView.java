@@ -16,6 +16,15 @@ public class SimulatorView
         }
     }
 
+    public void displayBusinessUnits(Map<String, Property> propertyMap)
+    {
+        for(Property prop : propertyMap.values() )
+        {
+            if( prop instanceof BusinessUnit )
+                System.out.println(prop.toString());
+        }
+    }
+
     public void displayEvents(List<Event> eventList)
     {
         for(Event ev : eventList)

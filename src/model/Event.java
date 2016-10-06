@@ -1,6 +1,7 @@
 package model;
 
-public class Event
+
+public class Event //implements Iterable
 {
     private int year;
     private String event;
@@ -21,6 +22,21 @@ public class Event
         toString = toString + "Property:  " + property + "\n";
 
         return toString;
+    }
+
+    public int getYear()
+    {
+        return this.year;
+    }
+
+    public String getEvent()
+    {
+        return this.event;
+    }
+
+    public String getProperty()
+    {
+        return this.property;
     }
 
 }

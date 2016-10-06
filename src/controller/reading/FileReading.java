@@ -1,19 +1,10 @@
-package controller;
+package controller.reading;
 
 import java.util.*;
 import java.io.*;
 
 public abstract class FileReading
 {
-
-    //private SimulatorController controller;
-
-    // public FileReading(SimulatorController controller)
-    // {
-    //     this.controller = controller;
-    // }
-
-
     // Template Method
     public void read(String filename)
     {
@@ -32,9 +23,6 @@ public abstract class FileReading
                 String line = input.nextLine();
                 result = line.split(",", -1);
                 processLine(result);
-                //entry = new PropertyEntry(result);
-                //entry.printEntry();
-
             }
             input.close();
 

@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import controller.reading.*;
 import controller.*;
 import model.*;
 
@@ -25,10 +26,11 @@ public class Start
         List<Event> events = new LinkedList<Event>();
         List<Plan> plans = new LinkedList<Plan>();
 
+        FileReading fileReader = null;
         SimulatorController controller = null;
 
         // Perform file reading for Property file
-        FileReading fileReader = new ReadProperty(props);
+        fileReader = new ReadProperty(props);
         fileReader.read(propertyFile);
 
         // Perform file reading for Event file
@@ -41,10 +43,18 @@ public class Start
 
         controller = new SimulatorController(props, events, plans);
 
+        System.out.println("Initial Values");
+        //controller.printProperties();
+        controller.printBusinessUnits();
+
+        controller.runSimulation(startYear, endYear);
+
+        System.out.println("\n\n\n\n Final Values");
         // Print Models
-        controller.printProperties();
-        controller.printEvents();
-        controller.printPlans();
+        //controller.printProperties();
+        controller.printBusinessUnits();
+        //controller.printEvents();
+        //controller.printPlans();
 
     }
 }

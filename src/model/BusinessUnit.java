@@ -20,4 +20,24 @@ public class BusinessUnit extends Property
         return toString;
     }
 
+    public double getWages()
+    {
+        return wages;
+    }
+
+    public double getRevenue()
+    {
+        return this.revenue;
+    }
+
+    public void setWages(double wages)
+    {
+        this.wages = wages;
+    }
+
+    public void setRevenue(double revenue)
+    {
+        this.revenue = revenue;
+    }
+
 }
