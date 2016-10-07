@@ -9,6 +9,7 @@ import controller.observer.*;
 
 public class SimulatorController
 {
+
     private Map<String, Property> propertyMap;
     private List<Event> eventList;
     private List<Plan> planList;
@@ -26,6 +27,9 @@ public class SimulatorController
         this.planList = plans;
         view = new SimulatorView();
         wageObservers = new HashMap<String, WageObserver>();
+        // Add all wage observers
+        addAllObservers();
+
     }
 
     public void runSimulation(int start, int end)
@@ -33,7 +37,7 @@ public class SimulatorController
 
 
         Action currAction;
-        Map<Character, Action> actions = new HashMap<Character, Action>();
+    //    Map<Character, Action> actions = new HashMap<Character, Action>();
         char ev;
         char inc;
         boolean increase = false;
@@ -43,63 +47,43 @@ public class SimulatorController
             throw new IllegalArgumentException("Start year cannot be earlier than end year");
         }
 
-        int currYear;
-    //    Iterator it = eventList.iterator();
+        Iterator<Event> it = eventList.iterator();
 
+        Event event = it.next();
 
-        // Update all Actions with the current lists
-    //    updateActions(actions);
-
-    addAllObservers();
         // Loop for the intended number of years.
         for (int i = start; i <= end; i++)
         {
+            // While event still in the current year
+            while (it.hasNext() && event.getYear() == i)
+            {
 
-//            if ( it.hasNext() )
-//            {
-                //Get next event
-//                Event event = it.next();
-                for (Event event : eventList){
+                // Obtain relevant Action from map
+                ev = event.getEvent().charAt(0);
+                inc = event.getEvent().charAt(1);
+                System.out.println("Year: " + i + "Action" + ev + inc);
 
-
-                // While event still in the current year
-                if( i == event.getYear() )
+                if ( ev == 'W')
                 {
-
-                    // Obtain relevant Action from map
-                    ev = event.getEvent().charAt(0);
-                    inc = event.getEvent().charAt(1);
-                    System.out.println("Year: " + i + "Action" + ev + inc);
-
-                    if ( ev == 'W')
+                    increase = false;
+                    if ( inc == '+')
                     {
-                        increase = false;
-                        if ( inc == '+')
-                        {
-                            increase = true;
-                        }
-
-                    //currAction = actions.get( Character.valueOf(ev) );
-
-                        for (WageObserver wo : wageObservers.values())
-                        {
-                            wo.updateWages(increase);
-                        }
-                    // Perform action specified in Event with corresponding Action
-                    //if (currAction != null)
-                        //currAction.performEvent(event);
+                        increase = true;
                     }
 
-
-
+                    for (WageObserver wo : wageObservers.values())
+                    {
+                        wo.updateWages(increase);
+                    }
                 }
 
-                }// end for each
-//            }
+                event = it.next();
+
+            }
 
         }
     }
-
+/*
     public void updateActions(Map<Character, Action> actions )
     {
         actions.put(Character.valueOf('W'), new Wages(propertyMap));
@@ -107,7 +91,7 @@ public class SimulatorController
     //         actions.put(Character.valueOf('V'), );
     }
 
-
+*/
     public void printProperties()
     {
         view.displayProperties(propertyMap);
