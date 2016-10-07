@@ -37,7 +37,6 @@ public class SimulatorController
 
 
         Action currAction;
-    //    Map<Character, Action> actions = new HashMap<Character, Action>();
         char ev;
         char inc;
         boolean increase = false;
@@ -48,6 +47,7 @@ public class SimulatorController
         }
 
         Iterator<Event> it = eventList.iterator();
+
 
         Event event = it.next();
 
@@ -63,22 +63,35 @@ public class SimulatorController
                 inc = event.getEvent().charAt(1);
                 System.out.println("Year: " + i + "Action" + ev + inc);
 
+                increase = false;
+                if ( inc == '+')
+                {
+                    increase = true;
+                }
+
                 if ( ev == 'W')
                 {
-                    increase = false;
-                    if ( inc == '+')
-                    {
-                        increase = true;
-                    }
-
                     for (WageObserver wo : wageObservers.values())
                     {
                         wo.updateWages(increase);
                     }
                 }
+                else if (ev == 'R')
+                {
+                    String name = event.getProperty();
+                    WageObserver wg = wageObservers.get(name);
+                    if (wg != null)
+                        ((BusinessUnit)(wg)).updateRevenue(increase);
+                }
+                else if (ev == 'V')
+                {
+                    String name = event.getProperty();
+                    Property prop = propertyMap.get(name);
+                    if (prop != null)
+                        prop.updateValue(increase);
+                }
 
                 event = it.next();
-
             }
 
         }

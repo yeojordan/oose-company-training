@@ -56,4 +56,18 @@ public class BusinessUnit extends Property implements WageObserver
         }
     }
 
+    public void updateRevenue(boolean increaseRev)
+    {
+        if (increaseRev)
+        {
+            this.revenue = this.revenue * 1.05;
+            System.out.println("Name:" + this.getName() + "\n" + "Increased Revenue: " + revenue + "\n");
+        }
+        else
+        {
+            this.revenue = this.revenue * 0.95;
+            System.out.println("Name:" + this.getName() + "\n" + "Decreased Revenue: " + revenue + "\n");
+        }
+    }
+
 }

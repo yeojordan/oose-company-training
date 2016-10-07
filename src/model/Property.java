@@ -56,4 +56,19 @@ public abstract class Property
         return this.monetaryValue;
     }
 
+    public void updateValue(boolean increaseVal)
+    {
+
+        if (increaseVal)
+        {
+            this.monetaryValue = this.monetaryValue * 1.05;
+            System.out.println("Name:" + this.name + "\n" + "Increased Value: " + this.monetaryValue + "\n");
+        }
+        else
+        {
+            this.monetaryValue = this.monetaryValue * 0.95;
+            System.out.println("Name:" + this.name + "\n" + "Decreased Value: " + this.monetaryValue + "\n");
+        }
+
+    }
 }
