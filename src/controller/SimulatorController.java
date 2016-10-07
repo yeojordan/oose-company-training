@@ -5,6 +5,7 @@ import java.util.*;
 import model.*;
 import view.*;
 import controller.actions.*;
+import controller.observer.*;
 
 public class SimulatorController
 {
@@ -13,6 +14,8 @@ public class SimulatorController
     private List<Plan> planList;
 
     private SimulatorView view;
+
+    private Map<String, WageObserver> wageObservers;
     // private List<Event> eventList;
 
 
@@ -22,6 +25,7 @@ public class SimulatorController
         this.eventList = events;
         this.planList = plans;
         view = new SimulatorView();
+        wageObservers = new HashMap<String, WageObserver>();
     }
 
     public void runSimulation(int start, int end)
@@ -31,7 +35,8 @@ public class SimulatorController
         Action currAction;
         Map<Character, Action> actions = new HashMap<Character, Action>();
         char ev;
-
+        char inc;
+        boolean increase = false;
 
         if( start > end )
         {
@@ -43,9 +48,9 @@ public class SimulatorController
 
 
         // Update all Actions with the current lists
-        updateActions(actions);
+    //    updateActions(actions);
 
-
+    addAllObservers();
         // Loop for the intended number of years.
         for (int i = start; i <= end; i++)
         {
@@ -63,14 +68,27 @@ public class SimulatorController
 
                     // Obtain relevant Action from map
                     ev = event.getEvent().charAt(0);
+                    inc = event.getEvent().charAt(1);
+                    System.out.println("Year: " + i + "Action" + ev + inc);
 
+                    if ( ev == 'W')
+                    {
+                        increase = false;
+                        if ( inc == '+')
+                        {
+                            increase = true;
+                        }
 
+                    //currAction = actions.get( Character.valueOf(ev) );
 
-                    currAction = actions.get( Character.valueOf(ev) );
-
+                        for (WageObserver wo : wageObservers.values())
+                        {
+                            wo.updateWages(increase);
+                        }
                     // Perform action specified in Event with corresponding Action
-                    if (currAction != null)
-                        currAction.performEvent(event);
+                    //if (currAction != null)
+                        //currAction.performEvent(event);
+                    }
 
 
 
@@ -108,5 +126,31 @@ public class SimulatorController
     public void printPlans()
     {
         view.displayPlans(planList);
+    }
+
+    // Add all observers to the map
+    public void addAllObservers()
+    {
+        for ( Property prop : propertyMap.values() )
+        {
+            if (prop instanceof WageObserver)
+            {
+                addObserver((WageObserver)(prop) );
+            }
+        }
+    }
+
+    public void addObserver(WageObserver property)
+    {
+        String name = null;
+        BusinessUnit prop = (BusinessUnit)(property);
+        name = prop.getName();
+
+        wageObservers.put( name, (WageObserver)property);
+    }
+
+    public void removeObserver(String key)
+    {
+        wageObservers.remove(key);
     }
 }
