@@ -29,7 +29,13 @@
     </target>
 
     <target name="run" depends="jar">
-        <java jar="${dist.dir}/${ant.project.name}.jar" fork="true"/>
+        <java jar="${dist.dir}/${ant.project.name}.jar" fork="true">
+            <arg value="${dist.dir}/propertyfile.csv"/>
+            <arg value="${dist.dir}/eventfile.csv"/>
+            <arg value="${dist.dir}/planfile.csv"/>
+            <arg value="2016"/>
+            <arg value="2019"/>
+        </java>
     </target>
 
     <target name="clean-build" depends="clean,jar"/>

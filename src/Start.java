@@ -12,6 +12,10 @@ public class Start
         {
             if ( args.length != 5)
             {
+                for (String in : args)
+                {
+                    System.out.println(in);
+                }
                 throw new IllegalArgumentException("Incorrect number of command line args");
             }
 
