@@ -51,5 +51,47 @@ public class Company extends Property
 
     }
 
+    /*
+        Profit is half of the profit from the properties the company owns
+        If you don't own anything. Profit = 0.0
+    */
+
+    public void calculateProfit()
+    {
+        double totalProfit = 0.0;
+        if (owns != null)
+        {
+            for ( Property owned : owns.values() )
+            {
+                owned.calculateProfit();
+                totalProfit += owned.getProfit();
+            }
+        }
+
+        // If sum of profit of what company owns < 0
+        if (totalProfit <= 0.0)
+        {
+            totalProfit = 0.0;
+        }
+
+        // Update company's profit
+        setProfit(totalProfit*0.5);
+
+        // Update company's bank account
+        bank.setValue(totalProfit*0.5);
+    }
+
+
+
+    public void buy(String property, )
+    {
+        
+    }
+
+    public void sell(String property)
+    {
+
+    }
+
 
 }

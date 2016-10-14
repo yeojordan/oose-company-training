@@ -70,4 +70,17 @@ public class BusinessUnit extends Property implements WageObserver
         }
     }
 
+    /*
+        Profit = Revenue - Wages
+    */
+    public void calculateProfit()
+    {
+        double profit = 0.0;
+
+        profit = revenue - wages;
+
+        setProfit(profit);
+    }
+
+
 }

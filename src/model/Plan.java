@@ -22,4 +22,20 @@ public class Plan
 
         return toString;
     }
+
+    public int getYear()
+    {
+        return this.year;
+    }
+
+    public char getDecision()
+    {
+        return this.decision;
+    }
+
+    public String getProperty()
+    {
+        return this.property;
+    }
+    
 }

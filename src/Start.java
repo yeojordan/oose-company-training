@@ -12,10 +12,6 @@ public class Start
         {
             if ( args.length != 5)
             {
-                for (String in : args)
-                {
-                    System.out.println(in);
-                }
                 throw new IllegalArgumentException("Incorrect number of command line args");
             }
 
@@ -28,12 +24,13 @@ public class Start
 
 
             // Initialise models
-            Map<String, Property> props = new HashMap<String, Property>();
-            List<Event> events = new LinkedList<Event>();
-            List<Plan> plans = new LinkedList<Plan>();
+            Map<String, Property> props     = new HashMap<String, Property>();
+            List<Event> events              = new LinkedList<Event>();
+            List<Plan> plans                = new LinkedList<Plan>();
 
-            FileReading fileReader = null;
-            SimulatorController controller = null;
+            // File Reader and Controller
+            FileReading fileReader          = null;
+            SimulatorController controller  = null;
 
             // Perform file reading for Property file
             fileReader = new ReadProperty(props);
@@ -47,12 +44,15 @@ public class Start
             fileReader = new ReadPlan(plans);
             fileReader.read(planFile);
 
+            // Create controller with models
             controller = new SimulatorController(props, events, plans);
+
 
             System.out.println("Initial Values");
             controller.printProperties();
             //controller.printBusinessUnits();
 
+            // Run Simulation
             controller.runSimulation(startYear, endYear);
 
             System.out.println("\n\n\n\n Final Values");

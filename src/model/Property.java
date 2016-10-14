@@ -71,4 +71,11 @@ public abstract class Property
         }
 
     }
+
+    abstract void calculateProfit();
+
+    public void setProfit(double profit)
+    {
+        this.profit = profit;
+    }
 }

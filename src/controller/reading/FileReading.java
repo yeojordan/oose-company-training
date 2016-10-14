@@ -36,5 +36,5 @@ public abstract class FileReading
 
     //protected abstract void readFile(String filename);
 
-    protected abstract void processLine(String[] line);
+    abstract void processLine(String[] line);
 }

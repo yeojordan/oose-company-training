@@ -16,6 +16,7 @@ public class BankAccount extends Property
         super.setMonetaryValue(monetaryValue);
     }
 
+
     public void getProfit()
     {
         double newProfit;
@@ -42,5 +43,21 @@ public class BankAccount extends Property
     //
     //     return toString;
     // }
+
+
+    
+    /*
+        Balance > 0 : Profit = Balance * 0.05
+        Balance <= 0: Profit = Balance * 0.05
+    */
+    public void calculateProfit()
+    {
+        double profit;
+        double balance = super.getMonetaryValue();
+        profit = balance * 0.05;
+
+        setProfit(profit);
+    }
+
 
 }
