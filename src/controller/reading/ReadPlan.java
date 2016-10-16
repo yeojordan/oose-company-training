@@ -1,5 +1,6 @@
 package controller.reading;
 
+import controller.*;
 import model.*;
 
 import java.util.*;
@@ -7,12 +8,12 @@ import java.io.*;
 
 public class ReadPlan extends FileReading
 {
-    //private SimulatorController controller;
-    private List<Plan> plans;
+    private SimulatorController controller;
 
-    public ReadPlan(List<Plan> plans)
+
+    public ReadPlan(SimulatorController controller)
     {
-        this.plans = plans;
+        this.controller = controller;
     }
 
     public void processLine(String[] line)
@@ -24,7 +25,7 @@ public class ReadPlan extends FileReading
 
         plan = new Plan(year, decision, property);
 
-        plans.add(plan);
+        controller.addPlan(plan);
     }
 
 

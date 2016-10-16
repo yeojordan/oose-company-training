@@ -17,11 +17,12 @@ public class BankAccount extends Property
     }
 
 
-    public void getProfit()
+    public double getProfit()
     {
-        double newProfit;
+        return 0.0;
+        //double newProfit;
         // Calculate profit
-        newProfit = this.getMonetaryValue() * 0.05;
+        //newProfit = this.getMonetaryValue() * 0.05;
         // Store profit
         //super.setProfit(profit);
     }
@@ -45,7 +46,7 @@ public class BankAccount extends Property
     // }
 
 
-    
+
     /*
         Balance > 0 : Profit = Balance * 0.05
         Balance <= 0: Profit = Balance * 0.05

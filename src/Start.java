@@ -32,20 +32,22 @@ public class Start
             FileReading fileReader          = null;
             SimulatorController controller  = null;
 
+            controller = new SimulatorController();
+
             // Perform file reading for Property file
-            fileReader = new ReadProperty(props);
+            fileReader = new ReadProperty(controller);
             fileReader.read(propertyFile);
 
             // Perform file reading for Event file
-            fileReader = new ReadEvent(events);
+            fileReader = new ReadEvent(controller);
             fileReader.read(eventFile);
 
             // Perform file reading for Plan file
-            fileReader = new ReadPlan(plans);
+            fileReader = new ReadPlan(controller);
             fileReader.read(planFile);
 
-            // Create controller with models
-            controller = new SimulatorController(props, events, plans);
+
+
 
 
             System.out.println("Initial Values");

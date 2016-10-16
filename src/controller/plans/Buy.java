@@ -1,9 +1,9 @@
-package controller.plans;
+/*package controller.plans;
 
 import java.util.*;
 import model.*;
 
-public class Buy implements PerformPlan
+public class Buy implements PlanAction
 {
     private Map<String, Property> properties;
 
@@ -21,19 +21,19 @@ public class Buy implements PerformPlan
         5. Decrease bank account by value of property
 
     */
-    public void performPlan(Plan plan)
+    /*public void performPlan(Plan plan)
     {
         // Property to be bought
         String property = plan.getProperty();
 
         Company newOwner = properties.get();
 
-        
+
         if ( !(properties.containsKey(property)) )
         {
 
         }
-
+*/
 /*
         // Loop through all properties
         for ( Property prop : properties.values() )
@@ -59,10 +59,10 @@ public class Buy implements PerformPlan
         }
 
         */
-    }
 
 
 
 
 
-}
+
+//}

@@ -1,5 +1,6 @@
 package controller.reading;
 
+import controller.*;
 import model.*;
 
 import java.util.*;
@@ -7,12 +8,12 @@ import java.io.*;
 
 public class ReadEvent extends FileReading
 {
-    //private SimulatorController controller;
-    private List<Event> events;
+    private SimulatorController controller;
 
-    public ReadEvent(List<Event> events)
+
+    public ReadEvent(SimulatorController controller)
     {
-        this.events = events;
+        this.controller = controller;
     }
 
     public void processLine(String[] line)
@@ -24,7 +25,9 @@ public class ReadEvent extends FileReading
 
         event = new Event(year, eventString, property);
 
-        events.add(event);
+
+
+        controller.addEvent(event);
     }
 
 

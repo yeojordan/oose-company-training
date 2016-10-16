@@ -10,6 +10,13 @@ public class SimulatorView
 
     public void displayProperties(Map<String, Property> propertyMap)
     {
+        if (propertyMap == null)
+            System.out.println("MAP NULL:");
+
+
+        System.out.println(propertyMap.size());
+        System.out.println("PRINTING PROPERTIES");
+
         for(Property prop : propertyMap.values() )
         {
             System.out.println(prop.toString());

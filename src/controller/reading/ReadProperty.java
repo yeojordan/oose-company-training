@@ -1,5 +1,6 @@
 package controller.reading;
 
+import controller.*;
 import model.*;
 
 import java.util.*;
@@ -8,11 +9,11 @@ import java.io.*;
 public class ReadProperty extends FileReading
 {
 
-    private Map<String, Property> properties;
+    private SimulatorController controller;
 
-    public ReadProperty(Map<String, Property> props)
+    public ReadProperty(SimulatorController controller)
     {
-        this.properties = props;
+        this.controller = controller;
     }
 
     public void processLine(String[] line)
@@ -25,26 +26,14 @@ public class ReadProperty extends FileReading
         double revenue  =   valueValidation(line[4]);
         double wages    =   valueValidation(line[5]);
 
-        boolean primaryComp = false;
-
         // If entry is a Company
         if ( type == 'C' )
         {
-
             if ( !line[4].equals("") || !line[5].equals("") )
             {
                 throw new IllegalArgumentException("Invalid Property File");
             }
             prop = new Company();
-
-
-            for ( Property pr : prop )
-            {
-                if ( pr instanceof Company)
-                {
-                    
-                }
-            }
 
         }
         // If entry is a Business Unit
@@ -58,8 +47,9 @@ public class ReadProperty extends FileReading
         prop.setOwner(owner);
         prop.setMonetaryValue(worth);
 
-        // Add to Property List in Property Map
-        properties.put(prop.getName(), prop);
+        System.out.println("IM INSERTING HERE");
+        this.controller.addProperty(prop);
+
 
     }
 

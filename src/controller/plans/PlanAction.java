@@ -1,8 +1,8 @@
-package controller.observer;
+package controller.plans;
 
 import model.*;
 
-public interface PerformPlan
+public interface PlanAction
 {
     public void performPlan(Plan plan);
 }

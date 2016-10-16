@@ -9,7 +9,7 @@ import controller.observer.*;
 
 public class SimulatorController
 {
-
+    private Company primaryCompany;
     private Map<String, Property> propertyMap;
     private List<Event> eventList;
     private List<Plan> planList;
@@ -20,15 +20,16 @@ public class SimulatorController
     // private List<Event> eventList;
 
 
-    public SimulatorController(Map<String, Property> properties, List<Event> events, List<Plan> plans)
+    public SimulatorController()
     {
-        this.propertyMap = properties;
-        this.eventList = events;
-        this.planList = plans;
-        view = new SimulatorView();
-        wageObservers = new HashMap<String, WageObserver>();
+        this.primaryCompany = null;
+        this.propertyMap    = new HashMap<String, Property>();
+        this.eventList      = new LinkedList<Event>();
+        this.planList       = new LinkedList<Plan>();
+        this.view           = new SimulatorView();
+        this.wageObservers  = new HashMap<String, WageObserver>();
         // Add all wage observers
-        addAllObservers();
+        //addAllObservers();
 
     }
 
@@ -40,7 +41,7 @@ public class SimulatorController
         char ev;
         char inc;
         boolean increase = false;
-
+        addAllObservers();
         if( start > end )
         {
             throw new IllegalArgumentException("Start year cannot be earlier than end year");
@@ -128,13 +129,29 @@ public class SimulatorController
     // Add all observers to the map
     public void addAllObservers()
     {
-        for ( Property prop : propertyMap.values() )
+        try
         {
-            if (prop instanceof WageObserver)
+
+            for ( Property prop : propertyMap.values() )
             {
-                addObserver((WageObserver)(prop) );
+                if (prop == null)
+                {
+
+                }
+                System.out.println(prop.toString());
+                if (prop instanceof WageObserver)
+                {
+                    addObserver((WageObserver)(prop) );
+                }
             }
         }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+
+
     }
 
     public void addObserver(WageObserver property)
@@ -150,4 +167,33 @@ public class SimulatorController
     {
         wageObservers.remove(key);
     }
+
+    // Insert a property the map
+    public void addProperty(Property property)
+    {
+        String key;
+        key = property.getName();
+
+        // If the company to insert is the first (primary)
+        if ( property instanceof Company && primaryCompany == null)
+        {
+            primaryCompany = (Company)property;
+        }
+
+        this.propertyMap.put(key, property);
+
+    }
+
+    public void addPlan(Plan plan)
+    {
+        this.planList.add(plan);
+    }
+
+    public void addEvent(Event event)
+    {
+        this.eventList.add(event);
+    }
+
+
+
 }

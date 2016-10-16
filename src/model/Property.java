@@ -74,6 +74,12 @@ public abstract class Property
 
     abstract void calculateProfit();
 
+    public double getProfit()
+    {
+        //stub
+        return 0.0;
+    }
+
     public void setProfit(double profit)
     {
         this.profit = profit;

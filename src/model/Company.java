@@ -82,16 +82,4 @@ public class Company extends Property
     }
 
 
-
-    public void buy(String property, )
-    {
-        
-    }
-
-    public void sell(String property)
-    {
-
-    }
-
-
 }
