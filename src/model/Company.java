@@ -17,6 +17,7 @@ public class Company extends Property
     public String toString()
     {
         String toString = super.toString();
+        toString = toString + "Bank Balance: " + bank.getMonetaryValue() + "\n";
         return toString;
     }
 
@@ -59,8 +60,20 @@ public class Company extends Property
     public void calculateProfit()
     {
         double totalProfit = 0.0;
+
+        System.out.println("Company Name: " + getName() +"\nBank Balance before interest "); //+ bank.getMonetaryValue() + "\n\n");
+        System.out.printf("%f\n\n", bank.getMonetaryValue() );
+
+
+
+
+        bank.calculateProfit();
+        System.out.println("Company Name: " + getName() +"\nBank Balance after interest "); //+ bank.getMonetaryValue() + "\n\n");
+
+        System.out.printf("%f\n\n", bank.getMonetaryValue() );
         if (owns != null)
         {
+
             for ( Property owned : owns.values() )
             {
                 owned.calculateProfit();
@@ -68,17 +81,23 @@ public class Company extends Property
             }
         }
 
-        // If sum of profit of what company owns < 0
+        System.out.println("Profit from owned properties: " + totalProfit +"\n\n");
+        // If sum of profit of what company owns <= 0
         if (totalProfit <= 0.0)
         {
-            totalProfit = 0.0;
+            bank.setValue(totalProfit);
+
+        }
+        // If the profit > 0
+        else
+        {
+            // Update company's profit
+            setProfit(totalProfit*0.5);
+
+            // Update company's bank account
+            bank.setValue(totalProfit*0.5);
         }
 
-        // Update company's profit
-        setProfit(totalProfit*0.5);
-
-        // Update company's bank account
-        bank.setValue(totalProfit*0.5);
     }
 
     public boolean checkOwnership(String property)
@@ -107,5 +126,14 @@ public class Company extends Property
         bank.setValue(value);
     }
 
+    public void calculateInterest()
+    {
+        bank.calculateProfit();
+    }
 
+    public double getBankBalance()
+    {
+
+        return bank.getMonetaryValue();
+    }
 }

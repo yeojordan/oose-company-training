@@ -50,21 +50,21 @@ public class Start
 
 
 
-            System.out.println("Initial Values");
-            controller.printProperties();
+            // System.out.println("Initial Values");
+            // controller.printProperties();
             //controller.printBusinessUnits();
 
             // Run Simulation
             controller.runSimulation(startYear, endYear);
 
-            System.out.println("\n\n\n\n Final Values");
+            // System.out.println("\n\n\n\n Final Values");
 
 
             // Print Models
-            controller.printProperties();
+            // controller.printProperties();
             //controller.printBusinessUnits();
             //controller.printEvents();
-            //controller.printPlans();
+            // controller.printPlans();
 
         }
         catch(IllegalArgumentException e)

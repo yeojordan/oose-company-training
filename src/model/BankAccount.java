@@ -13,7 +13,8 @@ public class BankAccount extends Property
 
     public void setValue(double monetaryValue)
     {
-        super.setMonetaryValue(monetaryValue);
+        double previousVal = getMonetaryValue();
+        super.setMonetaryValue(monetaryValue + previousVal);
     }
 
 
@@ -56,8 +57,8 @@ public class BankAccount extends Property
         double profit;
         double balance = super.getMonetaryValue();
         profit = balance * 0.05;
-
-        setProfit(profit);
+        System.out.println("Interest" + profit);
+        setValue(profit);
     }
 
 

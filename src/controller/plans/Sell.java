@@ -24,10 +24,6 @@ public class Sell implements PlanAction
     */
     public void performPlan(Plan plan, Company primaryCompany)
     {
-        if (plan == null)
-        {
-            System.out.println("SHITS FUCKED");
-        }
         Property property = null;
 
         // Property to be bought
@@ -39,10 +35,10 @@ public class Sell implements PlanAction
         // Retrieve value of property
         double value;
 
-        // If the primary company doesn't already own the property
-        // and property exists in map
-        if ( !(primaryCompany.checkOwnership(propertyName)) && (property != null) )
+        // If the primary company owns the property
+        if ( (primaryCompany.checkOwnership(propertyName)) && (property != null) )
         {
+
             value = property.getMonetaryValue();
             // Add property to new owner
             primaryCompany.removeProperty(property);
@@ -50,7 +46,15 @@ public class Sell implements PlanAction
             // Inrease bank balance
             primaryCompany.updateBank(value);
 
+            property.setOwner("Unnamed Buyer");
+
+
+            System.out.println("SELL PLAN OCCURRING \n\nSelling " + propertyName + "\n");
+
+            System.out.println("CURRENT BALANCE: " + primaryCompany.getBankBalance() + "\n" );
         }
+
+
 
     }
 

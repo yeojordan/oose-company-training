@@ -47,6 +47,10 @@ public class Buy implements PlanAction
         if ( !(primaryCompany.checkOwnership(propertyName)) && (property != null) )
         {
             value = property.getMonetaryValue();
+
+            // Set owner name in property bought
+            property.setOwner(primaryCompany.getName());
+
             // Add property to new owner
             primaryCompany.addProperty(property);
 
@@ -64,6 +68,9 @@ public class Buy implements PlanAction
             primaryCompany.updateBank(value*-1.0);
 
 
+            System.out.println("BUY PLAN OCCURRING \n\nBuying " + propertyName + "\n");
+
+            System.out.println("CURRENT BALANCE: " + primaryCompany.getBankBalance() + "\n" );
 
         }
 

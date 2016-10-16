@@ -43,6 +43,8 @@ public class SimulatorController
         char inc;
         boolean increase = false;
         HashMap<Character, PlanAction> plans = new HashMap<Character, PlanAction>();
+
+
         addAllObservers();
 
         updatePlans(plans);
@@ -63,7 +65,26 @@ public class SimulatorController
 
         // Loop for the intended number of years.
         for (int i = start; i <= end; i++)
-        {
+        {   System.out.println("\n\n\n\n");
+            System.out.println("YEAR: " + i);
+            // Calculate interest for each company for previous year's bank balance
+            for ( Property comp : propertyMap.values())
+            {
+                if (comp instanceof Company)
+                {
+                    //((Company)(comp)).calculateInterest();
+                    ((Company)(comp)).calculateProfit();
+                    //System.out.println("\n\nBalance after interest: " ((Company)(comp)).getMonetaryValue() + "\n\n");
+                }
+            }
+
+            //System.out.println("\n\n\n\n");
+
+
+
+            printProperties();
+
+
             // While event still in the current year
             while (it.hasNext() && event.getYear() == i)
             {
@@ -71,7 +92,7 @@ public class SimulatorController
                 // Obtain relevant Action from map
                 ev = event.getEvent().charAt(0);
                 inc = event.getEvent().charAt(1);
-                System.out.println("Year: " + i + "Action" + ev + inc);
+                //System.out.println("Year: " + i + "Action" + ev + inc);
 
                 increase = false;
                 if ( inc == '+')
@@ -108,41 +129,33 @@ public class SimulatorController
             // Plan File
             while (planIt.hasNext() && plan.getYear() == i)
             {
+
                 char pl = plan.getDecision();
                 PlanAction plAct = plans.get(Character.valueOf('S'));;
+            //    System.out.println(plan.toString());
 
                 if( pl == 'B')
                 {
                     plAct = plans.get(Character.valueOf('B'));
                 }
-        /*        else if (pl == 'S')
+                else if (pl == 'S')
                 {
                     plAct = plans.get(Character.valueOf('S'));
                 }
-                */
 
-                if (plan == null )
-                {
-                    System.out.println("PLAN == NULL");
-                }
-                if (this.primaryCompany == null )
-                {
-                    System.out.println("COMPANY == NULL");
-                }
+
                 plAct.performPlan(plan, this.primaryCompany);
 
                 plan = planIt.next();
             }
-
-
 
         }
     }
 
     public void updatePlans(Map<Character, PlanAction> plans )
     {
-        plans.put(Character.valueOf('B'), new Buy(propertyMap));
-        plans.put(Character.valueOf('S'), new Sell(propertyMap));
+        plans.put(Character.valueOf('B'), new Buy(this.propertyMap));
+        plans.put(Character.valueOf('S'), new Sell(this.propertyMap));
     }
 
 /*
