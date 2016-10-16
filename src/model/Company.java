@@ -81,5 +81,31 @@ public class Company extends Property
         bank.setValue(totalProfit*0.5);
     }
 
+    public boolean checkOwnership(String property)
+    {
+        return owns.containsKey(property);
+    }
+
+
+    public void removeProperty(Property property)
+    {
+        String propertyName = property.getName();
+        if( checkOwnership(propertyName) )
+        {
+            owns.remove(propertyName);
+        }
+
+        // Check if the property was removed correctly.
+        if( owns.containsKey(propertyName))
+        {
+            throw new IllegalStateException("Property not removed from ownership");
+        }
+    }
+
+    public void updateBank(double value)
+    {
+        bank.setValue(value);
+    }
+
 
 }

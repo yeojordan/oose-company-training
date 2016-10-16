@@ -26,6 +26,8 @@ public class ReadProperty extends FileReading
         double revenue  =   valueValidation(line[4]);
         double wages    =   valueValidation(line[5]);
 
+
+        Map<String, Property> properties;
         // If entry is a Company
         if ( type == 'C' )
         {
@@ -47,9 +49,19 @@ public class ReadProperty extends FileReading
         prop.setOwner(owner);
         prop.setMonetaryValue(worth);
 
-        System.out.println("IM INSERTING HERE");
-        this.controller.addProperty(prop);
+        properties = this.controller.getProperties();
 
+        // Check if a property's owner is in the simulation
+        if( properties.containsKey(owner) )
+        {
+            Company ow = (Company)(properties.get(owner));
+            ow.addProperty(prop);
+        }
+
+        //properties.put(name, prop);
+
+
+        this.controller.addProperty(prop);
 
     }
 

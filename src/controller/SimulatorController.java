@@ -6,6 +6,7 @@ import model.*;
 import view.*;
 import controller.actions.*;
 import controller.observer.*;
+import controller.plans.*;
 
 public class SimulatorController
 {
@@ -41,14 +42,22 @@ public class SimulatorController
         char ev;
         char inc;
         boolean increase = false;
+        HashMap<Character, PlanAction> plans = new HashMap<Character, PlanAction>();
         addAllObservers();
+
+        updatePlans(plans);
+
+
         if( start > end )
         {
             throw new IllegalArgumentException("Start year cannot be earlier than end year");
         }
 
         Iterator<Event> it = eventList.iterator();
+        Iterator<Plan> planIt = planList.iterator();
 
+
+        Plan plan = planIt.next();
 
         Event event = it.next();
 
@@ -95,8 +104,47 @@ public class SimulatorController
                 event = it.next();
             }
 
+
+            // Plan File
+            while (planIt.hasNext() && plan.getYear() == i)
+            {
+                char pl = plan.getDecision();
+                PlanAction plAct = plans.get(Character.valueOf('S'));;
+
+                if( pl == 'B')
+                {
+                    plAct = plans.get(Character.valueOf('B'));
+                }
+        /*        else if (pl == 'S')
+                {
+                    plAct = plans.get(Character.valueOf('S'));
+                }
+                */
+
+                if (plan == null )
+                {
+                    System.out.println("PLAN == NULL");
+                }
+                if (this.primaryCompany == null )
+                {
+                    System.out.println("COMPANY == NULL");
+                }
+                plAct.performPlan(plan, this.primaryCompany);
+
+                plan = planIt.next();
+            }
+
+
+
         }
     }
+
+    public void updatePlans(Map<Character, PlanAction> plans )
+    {
+        plans.put(Character.valueOf('B'), new Buy(propertyMap));
+        plans.put(Character.valueOf('S'), new Sell(propertyMap));
+    }
+
 /*
     public void updateActions(Map<Character, Action> actions )
     {
@@ -175,8 +223,9 @@ public class SimulatorController
         key = property.getName();
 
         // If the company to insert is the first (primary)
-        if ( property instanceof Company && primaryCompany == null)
+        if ( (property instanceof Company) && (primaryCompany == null) )
         {
+            System.out.println("PRIMARY COMPANY ADDED");
             primaryCompany = (Company)property;
         }
 
@@ -194,6 +243,10 @@ public class SimulatorController
         this.eventList.add(event);
     }
 
+    public Map<String, Property> getProperties()
+    {
+        return this.propertyMap;
+    }
 
 
 }
