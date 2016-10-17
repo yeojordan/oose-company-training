@@ -70,11 +70,16 @@ public class SimulatorController
             // Calculate interest for each company for previous year's bank balance
             for ( Property comp : propertyMap.values())
             {
-                if (comp instanceof Company)
+                if (comp instanceof Company )
                 {
-                    //((Company)(comp)).calculateInterest();
-                    ((Company)(comp)).calculateProfit();
-                    //System.out.println("\n\nBalance after interest: " ((Company)(comp)).getMonetaryValue() + "\n\n");
+                    // If company has no owner or sold to unnamed buyer
+                    if ( (comp.getOwner().equals("")) || (comp.getOwner().equals("Unnamed Buyer")) )
+                    {
+                        System.out.println("Company to Calculate Profit On: " + comp.getName() + "\nOwner: " + comp.getOwner() + "\n\n\n");
+                        // Updates profit
+                        ((Company)(comp)).calculateProfit();
+                        //System.out.println("\n\nBalance after interest: " ((Company)(comp)).getMonetaryValue() + "\n\n");
+                    }
                 }
             }
 

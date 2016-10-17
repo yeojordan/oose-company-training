@@ -74,15 +74,18 @@ public class Company extends Property
         if (owns != null)
         {
 
+            System.out.println("Iterating through owned properties");
             for ( Property owned : owns.values() )
             {
+                System.out.println(owned.getName() + "\n");
                 owned.calculateProfit();
+
                 totalProfit += owned.getProfit();
             }
         }
 
         System.out.println("Profit from owned properties: " + totalProfit +"\n\n");
-        // If sum of profit of what company owns <= 0
+       // If sum of profit of what company owns <= 0
         if (totalProfit <= 0.0)
         {
             bank.setValue(totalProfit);
@@ -136,4 +139,28 @@ public class Company extends Property
 
         return bank.getMonetaryValue();
     }
+
+/*
+    // Calculate own profit not include anything owned.
+    public void figureOutProfit()
+    {
+
+        if (totalProfit <= 0.0)
+        {
+            bank.setValue(totalProfit);
+
+        }
+        // If the profit > 0
+        else
+        {
+            // Update company's profit
+            setProfit(totalProfit*0.5);
+
+            // Update company's bank account
+            bank.setValue(totalProfit*0.5);
+        }
+    }
+
+*/
+
 }

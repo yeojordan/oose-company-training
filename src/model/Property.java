@@ -76,8 +76,7 @@ public abstract class Property
 
     public double getProfit()
     {
-        //stub
-        return 0.0;
+        return this.profit;
     }
 
     public void setProfit(double profit)
