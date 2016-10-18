@@ -59,10 +59,16 @@ public class SimulatorController
         Iterator<Plan> planIt = planList.iterator();
 
 
-        Plan plan = planIt.next();
+        Plan plan = null;
 
-        Event event = it.next();
+        Event event = null;
+        int eventYear;
+        event = it.next();
+        eventYear = event.getYear();
 
+        int planYear;
+        plan = planIt.next();
+        planYear = plan.getYear();
         // Loop for the intended number of years.
         for (int i = start; i <= end; i++)
         {
@@ -72,50 +78,59 @@ public class SimulatorController
 
             printProperties();
 
-
             // While event still in the current year
-            while (it.hasNext() && event.getYear() == i)
+            while (eventYear == i)
             {
 
-                // Obtain relevant Action from map
-                ev = event.getEvent().charAt(0);
-                inc = event.getEvent().charAt(1);
-                //System.out.println("Year: " + i + "Action" + ev + inc);
 
-                increase = false;
-                if ( inc == '+')
-                {
-                    increase = true;
-                }
+                    // Obtain relevant Action from map
+                    ev = event.getEvent().charAt(0);
+                    inc = event.getEvent().charAt(1);
+                    //System.out.println("Year: " + i + "Action" + ev + inc);
 
-                if ( ev == 'W')
-                {
-                    for (WageObserver wo : wageObservers.values())
+                    increase = false;
+                    if ( inc == '+')
                     {
-                        wo.updateWages(increase);
+                        increase = true;
                     }
-                }
-                else if (ev == 'R')
-                {
-                    String name = event.getProperty();
-                    WageObserver wg = wageObservers.get(name);
-                    if (wg != null)
-                        ((BusinessUnit)(wg)).updateRevenue(increase);
-                }
-                else if (ev == 'V')
-                {
-                    String name = event.getProperty();
-                    Property prop = propertyMap.get(name);
-                    if (prop != null)
-                        prop.updateValue(increase);
-                }
 
-                event = it.next();
+                    if ( ev == 'W')
+                    {
+                        for (WageObserver wo : wageObservers.values())
+                        {
+                            wo.updateWages(increase);
+                        }
+                    }
+                    else if (ev == 'R')
+                    {
+                        String name = event.getProperty();
+                        WageObserver wg = wageObservers.get(name);
+                        if (wg != null)
+                            ((BusinessUnit)(wg)).updateRevenue(increase);
+                    }
+                    else if (ev == 'V')
+                    {
+                        String name = event.getProperty();
+                        Property prop = propertyMap.get(name);
+                        if (prop != null)
+                            prop.updateValue(increase);
+                    }
+
+
+                if (it.hasNext())
+                {
+                    event = it.next();
+                    eventYear = event.getYear();
+                }
+                else
+                {
+                    eventYear = i +1;
+                }
             }//End event while
 
 
             // Plan File
-            while (planIt.hasNext() && plan.getYear() == i)
+            while (planYear == i)
             {
 
                 char pl = plan.getDecision();
@@ -134,7 +149,18 @@ public class SimulatorController
 
                 plAct.performPlan(plan, this.primaryCompany);
 
-                plan = planIt.next();
+
+                if (planIt.hasNext())
+                {
+                    plan = planIt.next();
+                    planYear = plan.getYear();
+                }
+                else
+                {
+                    planYear = i +1;
+                }
+
+
             }//End plan while
 
 

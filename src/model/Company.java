@@ -83,8 +83,9 @@ public class Company extends Property
                 totalProfit += owned.getProfit();
             }
 
-
         }
+
+
 
         System.out.println("Profit from owned properties: " + totalProfit +"\n\n");
        // If sum of profit of what company owns <= 0
@@ -102,9 +103,11 @@ public class Company extends Property
             // Update company's bank account
             bank.setValue(totalProfit*0.5);
 
-
-            System.out.println("After calculating owned profit: " + bank.getMonetaryValue() + "\n");
         }
+
+
+
+        System.out.println("After calculating owned profit: " + bank.getMonetaryValue() + "\n");
 
     }
 
