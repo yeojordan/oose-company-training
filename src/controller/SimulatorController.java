@@ -65,27 +65,10 @@ public class SimulatorController
 
         // Loop for the intended number of years.
         for (int i = start; i <= end; i++)
-        {   System.out.println("\n\n\n\n");
+        {
+
+            System.out.println("\n\n\n\n");
             System.out.println("YEAR: " + i);
-            // Calculate interest for each company for previous year's bank balance
-            for ( Property comp : propertyMap.values())
-            {
-                if (comp instanceof Company )
-                {
-                    // If company has no owner or sold to unnamed buyer
-                    if ( (comp.getOwner().equals("")) || (comp.getOwner().equals("Unnamed Buyer")) )
-                    {
-                        System.out.println("Company to Calculate Profit On: " + comp.getName() + "\nOwner: " + comp.getOwner() + "\n\n\n");
-                        // Updates profit
-                        ((Company)(comp)).calculateProfit();
-                        //System.out.println("\n\nBalance after interest: " ((Company)(comp)).getMonetaryValue() + "\n\n");
-                    }
-                }
-            }
-
-            //System.out.println("\n\n\n\n");
-
-
 
             printProperties();
 
@@ -128,7 +111,7 @@ public class SimulatorController
                 }
 
                 event = it.next();
-            }
+            }//End event while
 
 
             // Plan File
@@ -152,9 +135,26 @@ public class SimulatorController
                 plAct.performPlan(plan, this.primaryCompany);
 
                 plan = planIt.next();
+            }//End plan while
+
+
+            // Calculate interest for each company for previous year's bank balance
+            for ( Property comp : propertyMap.values())
+            {
+                if (comp instanceof Company )
+                {
+                    // If company has no owner or sold to unnamed buyer
+                    if ( (comp.getOwner().equals("")) || (comp.getOwner().equals("Unnamed Buyer")) )
+                    {
+                        //System.out.println("Company to Calculate Profit On: " + comp.getName() + "\nOwner: " + comp.getOwner() + "\n\n\n");
+                        // Updates profit
+                        ((Company)(comp)).calculateProfit();
+
+                    }
+                }
             }
 
-        }
+        }//End for
     }
 
     public void updatePlans(Map<Character, PlanAction> plans )
@@ -204,7 +204,7 @@ public class SimulatorController
                 {
 
                 }
-                System.out.println(prop.toString());
+                //System.out.println(prop.toString());
                 if (prop instanceof WageObserver)
                 {
                     addObserver((WageObserver)(prop) );

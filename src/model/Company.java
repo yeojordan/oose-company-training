@@ -61,8 +61,8 @@ public class Company extends Property
     {
         double totalProfit = 0.0;
 
-        System.out.println("Company Name: " + getName() +"\nBank Balance before interest "); //+ bank.getMonetaryValue() + "\n\n");
-        System.out.printf("%f\n\n", bank.getMonetaryValue() );
+        // System.out.println("Company Name: " + getName() +"\nBank Balance before interest "); //+ bank.getMonetaryValue() + "\n\n");
+        // System.out.printf("%f\n\n", bank.getMonetaryValue() );
 
 
 
@@ -74,7 +74,7 @@ public class Company extends Property
         if (owns != null)
         {
 
-            System.out.println("Iterating through owned properties");
+            // System.out.println("Iterating through owned properties");
             for ( Property owned : owns.values() )
             {
                 System.out.println(owned.getName() + "\n");
@@ -82,6 +82,8 @@ public class Company extends Property
 
                 totalProfit += owned.getProfit();
             }
+
+
         }
 
         System.out.println("Profit from owned properties: " + totalProfit +"\n\n");
@@ -95,10 +97,13 @@ public class Company extends Property
         else
         {
             // Update company's profit
-            setProfit(totalProfit*0.5);
+            //setProfit(totalProfit*0.5);
 
             // Update company's bank account
             bank.setValue(totalProfit*0.5);
+
+
+            System.out.println("After calculating owned profit: " + bank.getMonetaryValue() + "\n");
         }
 
     }

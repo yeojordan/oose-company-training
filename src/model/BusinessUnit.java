@@ -78,6 +78,7 @@ public class BusinessUnit extends Property implements WageObserver
         double profit = 0.0;
 
         profit = this.revenue - this.wages;
+        System.out.println("Revenue " + this.revenue + "Wages " + this.wages );
         System.out.println("BU Profit: " + profit);
 
         super.setProfit(profit);

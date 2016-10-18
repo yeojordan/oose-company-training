@@ -34,7 +34,7 @@
             <arg value="${dist.dir}/eventfile.csv"/>
             <arg value="${dist.dir}/planfile.csv"/>
             <arg value="2016"/>
-            <arg value="2019"/>
+            <arg value="2020"/>
         </java>
     </target>
 
