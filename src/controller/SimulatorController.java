@@ -47,7 +47,7 @@ public class SimulatorController
 
         addAllObservers();
 
-        updatePlans(plans);
+    //    updatePlans(plans);
 
 
         if( start > end )
@@ -133,21 +133,21 @@ public class SimulatorController
             while (planYear == i)
             {
 
-                char pl = plan.getDecision();
-                PlanAction plAct = plans.get(Character.valueOf('S'));;
-            //    System.out.println(plan.toString());
+            //     char pl = plan.getDecision();
+            //     PlanAction plAct = plans.get(Character.valueOf('S'));;
+            // //    System.out.println(plan.toString());
+            //
+            //     if( pl == 'B')
+            //     {
+            //         plAct = plans.get(Character.valueOf('B'));
+            //     }
+            //     else if (pl == 'S')
+            //     {
+            //         plAct = plans.get(Character.valueOf('S'));
+            //     }
+            //
 
-                if( pl == 'B')
-                {
-                    plAct = plans.get(Character.valueOf('B'));
-                }
-                else if (pl == 'S')
-                {
-                    plAct = plans.get(Character.valueOf('S'));
-                }
-
-
-                plAct.performPlan(plan, this.primaryCompany);
+                plan.performPlan(this.propertyMap, this.primaryCompany);
 
 
                 if (planIt.hasNext())
@@ -183,11 +183,11 @@ public class SimulatorController
         }//End for
     }
 
-    public void updatePlans(Map<Character, PlanAction> plans )
-    {
-        plans.put(Character.valueOf('B'), new Buy(this.propertyMap));
-        plans.put(Character.valueOf('S'), new Sell(this.propertyMap));
-    }
+    // public void updatePlans(Map<Character, PlanAction> plans )
+    // {
+    //     plans.put(Character.valueOf('B'), new Buy(this.propertyMap));
+    //     plans.put(Character.valueOf('S'), new Sell(this.propertyMap));
+    // }
 
 /*
     public void updateActions(Map<Character, Action> actions )

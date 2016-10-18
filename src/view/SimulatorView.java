@@ -4,6 +4,7 @@ import model.*;
 import view.*;
 import java.io.*;
 import java.util.*;
+import controller.plans.*;
 
 public class SimulatorView
 {

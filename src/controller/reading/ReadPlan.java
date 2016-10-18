@@ -2,7 +2,8 @@ package controller.reading;
 
 import controller.*;
 import model.*;
-
+import controller.plans.*;
+import controller.factories.*;
 import java.util.*;
 import java.io.*;
 
@@ -23,7 +24,13 @@ public class ReadPlan extends FileReading
         char decision = line[1].charAt(0);
         String property = line[2];
 
-        plan = new Plan(year, decision, property);
+        PlanFactory pFact = new PlanFactory();
+
+        plan = pFact.createPlan(decision);
+
+        plan.setYear(year);
+        plan.setProperty(property);
+        //plan = new Plan(year, decision, property);
 
         controller.addPlan(plan);
     }

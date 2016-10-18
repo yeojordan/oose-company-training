@@ -3,15 +3,19 @@ package controller.plans;
 import java.util.*;
 import model.*;
 
-public class Sell implements PlanAction
+public class Sell extends Plan
 {
-    private Map<String, Property> properties;
+    //private Map<String, Property> properties;
 
-    public Sell(Map<String, Property> properties)
+    // public Sell(Map<String, Property> properties)
+    // {
+    //     this.properties = properties;
+    // }
+
+    public Sell()
     {
-        this.properties = properties;
+        super();
     }
-
     /* Buy a business unit or company
 
         1. Check if owned already
@@ -22,12 +26,12 @@ public class Sell implements PlanAction
         6. Decrease bank account by value of property
 
     */
-    public void performPlan(Plan plan, Company primaryCompany)
+    public void performPlan(Map<String, Property> properties, Company primaryCompany)
     {
         Property property = null;
 
         // Property to be bought
-        String propertyName = plan.getProperty();
+        String propertyName = getProperty();
 
         // Retrieve property from map
         property = properties.get(propertyName);
@@ -56,6 +60,13 @@ public class Sell implements PlanAction
 
 
 
+    }
+
+    public String toString()
+    {
+        String toString = super.toString();
+        toString = toString + "Buy/Sell: Sell\n";
+        return toString;
     }
 
 
