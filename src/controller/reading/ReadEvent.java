@@ -2,7 +2,8 @@ package controller.reading;
 
 import controller.*;
 import model.*;
-
+import controller.factories.*;
+import controller.events.*;
 import java.util.*;
 import java.io.*;
 
@@ -23,9 +24,11 @@ public class ReadEvent extends FileReading
         String eventString = line[1];
         String property = line[2];
 
-        event = new Event(year, eventString, property);
+        EventFactory evFact = new EventFactory();
 
-
+        event = evFact.createEvent(eventString);
+        event.setYear(year);
+        event.setProperty(property);
 
         controller.addEvent(event);
     }

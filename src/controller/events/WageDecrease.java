@@ -1,20 +1,19 @@
-package controller.actions;
+package controller.events;
 
-import java.util.*;
 import model.*;
+import controller.events.*;
+import java.util.*;
 
-public class Wages implements Action
+
+public class WageDecrease extends Event
 {
-    private Map<String, Property> properties;
-
-    public Wages(Map<String, Property> properties)
+    public WageDecrease()
     {
-        this.properties = properties;
+        super();
     }
 
-    public void performEvent(Event event)
+    public void performEvent(Map<String, Property> properties)
     {
-        String task = event.getEvent();
         double newWages;
 
         // Loop through all properties
@@ -29,15 +28,11 @@ public class Wages implements Action
                 // Calculate wages of Business Unit
                 newWages = ((BusinessUnit)(prop)).getWages() * 0.95;
 
-                if ( task.charAt(1) == '+' )
-                {
-                    newWages = ((BusinessUnit)(prop)).getWages() * 1.05;
-                }
-
                 // Update wages of Business Unit
                 ((BusinessUnit)(prop)).setWages(newWages);
 
             }
         }
     }
+
 }

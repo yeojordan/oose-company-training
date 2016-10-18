@@ -4,9 +4,10 @@ import java.util.*;
 
 import model.*;
 import view.*;
-import controller.actions.*;
+
 import controller.observer.*;
 import controller.plans.*;
+import controller.events.*;
 
 public class SimulatorController
 {
@@ -38,7 +39,7 @@ public class SimulatorController
     {
 
 
-        Action currAction;
+
         char ev;
         char inc;
         boolean increase = false;
@@ -82,39 +83,39 @@ public class SimulatorController
             while (eventYear == i)
             {
 
-
-                    // Obtain relevant Action from map
-                    ev = event.getEvent().charAt(0);
-                    inc = event.getEvent().charAt(1);
-                    //System.out.println("Year: " + i + "Action" + ev + inc);
-
-                    increase = false;
-                    if ( inc == '+')
-                    {
-                        increase = true;
-                    }
-
-                    if ( ev == 'W')
-                    {
-                        for (WageObserver wo : wageObservers.values())
-                        {
-                            wo.updateWages(increase);
-                        }
-                    }
-                    else if (ev == 'R')
-                    {
-                        String name = event.getProperty();
-                        WageObserver wg = wageObservers.get(name);
-                        if (wg != null)
-                            ((BusinessUnit)(wg)).updateRevenue(increase);
-                    }
-                    else if (ev == 'V')
-                    {
-                        String name = event.getProperty();
-                        Property prop = propertyMap.get(name);
-                        if (prop != null)
-                            prop.updateValue(increase);
-                    }
+                event.performEvent(this.propertyMap);
+                    // // Obtain relevant Action from map
+                    // ev = event.getEvent().charAt(0);
+                    // inc = event.getEvent().charAt(1);
+                    // //System.out.println("Year: " + i + "Action" + ev + inc);
+                    //
+                    // increase = false;
+                    // if ( inc == '+')
+                    // {
+                    //     increase = true;
+                    // }
+                    //
+                    // if ( ev == 'W')
+                    // {
+                    //     for (WageObserver wo : wageObservers.values())
+                    //     {
+                    //         wo.updateWages(increase);
+                    //     }
+                    // }
+                    // else if (ev == 'R')
+                    // {
+                    //     String name = event.getProperty();
+                    //     WageObserver wg = wageObservers.get(name);
+                    //     if (wg != null)
+                    //         ((BusinessUnit)(wg)).updateRevenue(increase);
+                    // }
+                    // else if (ev == 'V')
+                    // {
+                    //     String name = event.getProperty();
+                    //     Property prop = propertyMap.get(name);
+                    //     if (prop != null)
+                    //         prop.updateValue(increase);
+                    // }
 
 
                 if (it.hasNext())

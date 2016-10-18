@@ -56,20 +56,12 @@ public abstract class Property
         return this.monetaryValue;
     }
 
-    public void updateValue(boolean increaseVal)
+    public void updateValue(double multiplier)
     {
+        this.monetaryValue = this.monetaryValue * multiplier;
+        // System.out.println("Name:" + this.name + "\n" + "Increased Value: " + this.monetaryValue + "\n");
 
-        if (increaseVal)
-        {
-            this.monetaryValue = this.monetaryValue * 1.05;
-            System.out.println("Name:" + this.name + "\n" + "Increased Value: " + this.monetaryValue + "\n");
-        }
-        else
-        {
-            this.monetaryValue = this.monetaryValue * 0.95;
-            System.out.println("Name:" + this.name + "\n" + "Decreased Value: " + this.monetaryValue + "\n");
-        }
-
+        // System.out.println("Name:" + this.name + "\n" + "Decreased Value: " + this.monetaryValue + "\n");
     }
 
     abstract void calculateProfit();
