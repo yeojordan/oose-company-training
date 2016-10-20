@@ -4,7 +4,6 @@ import model.*;
 import controller.events.*;
 import java.util.*;
 
-
 public class WageDecrease extends Event
 {
     public WageDecrease()
@@ -24,7 +23,6 @@ public class WageDecrease extends Event
             if ( prop instanceof BusinessUnit )
             {
 
-                //double oldWages =
                 // Calculate wages of Business Unit
                 newWages = ((BusinessUnit)(prop)).getWages() * 0.95;
 

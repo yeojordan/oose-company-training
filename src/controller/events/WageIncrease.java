@@ -21,8 +21,6 @@ public class WageIncrease extends Event
             // Find Business Units
             if ( prop instanceof BusinessUnit )
             {
-
-                //double oldWages =
                 // Calculate wages of Business Unit
                 newWages = ((BusinessUnit)(prop)).getWages() * 1.05;
 

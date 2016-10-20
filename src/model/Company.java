@@ -67,7 +67,7 @@ public class Company extends Property
 
 
 
-        // bank.calculateProfit();
+        //  bank.calculateProfit();
         System.out.println("Company Name: " + getName() +"\nBank Balance after interest "); //+ bank.getMonetaryValue() + "\n\n");
 
         System.out.printf("%f\n\n", bank.getMonetaryValue() );

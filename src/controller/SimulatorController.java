@@ -38,18 +38,14 @@ public class SimulatorController
     public void runSimulation(int start, int end)
     {
 
-
-
         char ev;
         char inc;
         boolean increase = false;
         HashMap<Character, PlanAction> plans = new HashMap<Character, PlanAction>();
 
-
         addAllObservers();
 
     //    updatePlans(plans);
-
 
         if( start > end )
         {
@@ -84,39 +80,6 @@ public class SimulatorController
             {
 
                 event.performEvent(this.propertyMap);
-                    // // Obtain relevant Action from map
-                    // ev = event.getEvent().charAt(0);
-                    // inc = event.getEvent().charAt(1);
-                    // //System.out.println("Year: " + i + "Action" + ev + inc);
-                    //
-                    // increase = false;
-                    // if ( inc == '+')
-                    // {
-                    //     increase = true;
-                    // }
-                    //
-                    // if ( ev == 'W')
-                    // {
-                    //     for (WageObserver wo : wageObservers.values())
-                    //     {
-                    //         wo.updateWages(increase);
-                    //     }
-                    // }
-                    // else if (ev == 'R')
-                    // {
-                    //     String name = event.getProperty();
-                    //     WageObserver wg = wageObservers.get(name);
-                    //     if (wg != null)
-                    //         ((BusinessUnit)(wg)).updateRevenue(increase);
-                    // }
-                    // else if (ev == 'V')
-                    // {
-                    //     String name = event.getProperty();
-                    //     Property prop = propertyMap.get(name);
-                    //     if (prop != null)
-                    //         prop.updateValue(increase);
-                    // }
-
 
                 if (it.hasNext())
                 {
@@ -133,21 +96,6 @@ public class SimulatorController
             // Plan File
             while (planYear == i)
             {
-
-            //     char pl = plan.getDecision();
-            //     PlanAction plAct = plans.get(Character.valueOf('S'));;
-            // //    System.out.println(plan.toString());
-            //
-            //     if( pl == 'B')
-            //     {
-            //         plAct = plans.get(Character.valueOf('B'));
-            //     }
-            //     else if (pl == 'S')
-            //     {
-            //         plAct = plans.get(Character.valueOf('S'));
-            //     }
-            //
-
                 plan.performPlan(this.propertyMap, this.primaryCompany);
 
 
@@ -160,7 +108,6 @@ public class SimulatorController
                 {
                     planYear = i +1;
                 }
-
 
             }//End plan while
 
@@ -270,7 +217,6 @@ public class SimulatorController
         // If the company to insert is the first (primary)
         if ( (property instanceof Company) && (primaryCompany == null) )
         {
-            System.out.println("PRIMARY COMPANY ADDED");
             primaryCompany = (Company)property;
         }
 
