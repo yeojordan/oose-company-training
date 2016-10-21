@@ -64,7 +64,7 @@ public abstract class Property
         // System.out.println("Name:" + this.name + "\n" + "Decreased Value: " + this.monetaryValue + "\n");
     }
 
-    abstract void calculateProfit();
+    public abstract void calculateProfit();
 
     public double getProfit()
     {

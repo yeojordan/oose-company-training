@@ -30,7 +30,7 @@ public class PropertyController
         key = property.getName();
 
         // If the company to insert is the first (primary)
-        if ( (property instanceof Company) && (primaryCompany == null) )
+        if ( (primaryCompany == null) && (property instanceof Company) )
         {
             primaryCompany = (Company)property;
         }
@@ -66,18 +66,19 @@ public class PropertyController
     public void updateProfit()
     {
         // Calculate interest for each company for previous year's bank balance
-        for ( Property comp : this.propertyMap.values() )
+        for ( Property prop : this.propertyMap.values() )
         {
-            if (comp instanceof Company )
-            {
+            // if (comp instanceof Company )
+            // {
                 // If company has no owner or sold to unnamed buyer
-                if ( (comp.getOwner().equals("")) || (comp.getOwner().equals("Unnamed Buyer")) )
+                if ( (prop.getOwner().equals("")) || prop.getOwner().equals("Unnamed Buyer") )
                 {
                     //System.out.println("Company to Calculate Profit On: " + comp.getName() + "\nOwner: " + comp.getOwner() + "\n\n\n");
                     // Updates profit
-                    ((Company)(comp)).calculateProfit();
+                    // ((Company)(comp)).calculateProfit();
+                    prop.calculateProfit();
                 }
-            }
+            // }
         }
     }
 }

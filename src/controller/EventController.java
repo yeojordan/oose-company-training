@@ -12,9 +12,18 @@ public class EventController
         this.eventList = new LinkedList<Event>();
     }
 
-    public void addEvent(Event event)
+    public void addEvent(Event event) throws IllegalArgumentException
     {
+        if(eventList.size() > 0)
+        {
+            Event tempEvent = eventList.get(eventList.size() - 1);
+            if ( event.getYear() < tempEvent.getYear() || tempEvent == null )
+            {
+                throw new IllegalArgumentException("Events must be listed in chronological order");
+            }
+        }
         this.eventList.add(event);
+
     }
 
     public List<Event> getEvents()

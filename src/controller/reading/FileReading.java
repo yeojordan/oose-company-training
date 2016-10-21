@@ -6,13 +6,14 @@ import java.io.*;
 public abstract class FileReading
 {
     // Template Method
-    public void read(String filename)
+    public void read(String filename) throws IllegalArgumentException, IOException
     {
         String[] result = new String[6];
+        Scanner input = null;
         // PropertyEntry entry = null;
         try
         {
-            Scanner input = null;
+
             File file = new File(filename);
 
             input = new Scanner(file);
@@ -24,14 +25,29 @@ public abstract class FileReading
                 result = line.split(",", -1);
                 processLine(result);
             }
-            input.close();
+
 
         }
-        catch (Exception ex)
+        catch(IOException e)
         {
-            ex.printStackTrace();
+            throw new IOException("Error occurred in file reading");
         }
+        catch(IllegalArgumentException e)
+        {
+            throw new IllegalArgumentException("Error in file parsing." + e.getMessage() );
+        }
+        finally
+        {
+            // try
+            // {
+                input.close();
+            // }
+            // catch(IOException e)
+            // {
+            //     throw new IOException("File Stream failed to close");
+            // }
 
+        }
     }
 
     //protected abstract void readFile(String filename);

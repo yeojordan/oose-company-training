@@ -24,17 +24,13 @@ public class Start
             int endYear         =   Integer.parseInt(args[4]);
 
 
-            // Initialise models
-            Map<String, Property> props     = new HashMap<String, Property>();
-            List<Event> events              = new LinkedList<Event>();
-            List<Plan> plans                = new LinkedList<Plan>();
-
             // File Reader and Controller
             FileReading fileReader          = null;
             SimulatorController controller  = null;
-            PropertyController propController = new PropertyController();
-            PlanController planController = new PlanController();
-            EventController eventController = new EventController();
+            PropertyController propController   = new PropertyController();
+            PlanController planController       = new PlanController();
+            EventController eventController     = new EventController();
+
             controller = new SimulatorController();
 
             // Perform file reading for Property file
@@ -44,10 +40,10 @@ public class Start
         // To be removed
         controller.setPropertyController(propController);
             // Perform file reading for Event file
-            fileReader = new ReadEvent(eventController);
+            fileReader = new ReadEvent(eventController, propController);
             fileReader.read(eventFile);
         controller.setEventController(eventController);
-        
+
             // Perform file reading for Plan file
             fileReader = new ReadPlan(planController);
             fileReader.read(planFile);
@@ -55,7 +51,7 @@ public class Start
 
 
 
-
+controller.printEvents();
 
             // System.out.println("Initial Values");
             // controller.printProperties();
@@ -77,6 +73,10 @@ public class Start
         catch(IllegalArgumentException e)
         {
 
+            System.out.println(e.getMessage());
+        }
+        catch(IOException e)
+        {
             System.out.println(e.getMessage());
         }
 

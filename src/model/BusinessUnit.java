@@ -45,28 +45,8 @@ public class BusinessUnit extends Property implements WageObserver
     public void update(double multiplier)
     {
         this.wages *= multiplier;
-            //System.out.println("Name:" + this.getName() + "\n" + "Increased Wages: " + wages + "\n");
-        //
-        // else
-        // {
-        //     this.wages = this.wages * 0.95;
-        //     System.out.println("Name:" + this.getName() + "\n" + "Decreased Wages: " + wages + "\n");
-        // }
-    }
 
-    // public void updateRevenue(boolean increaseRev)
-    // {
-    //     if (increaseRev)
-    //     {
-    //         this.revenue = this.revenue * 1.05;
-    //         System.out.println("Name:" + this.getName() + "\n" + "Increased Revenue: " + revenue + "\n");
-    //     }
-    //     else
-    //     {
-    //         this.revenue = this.revenue * 0.95;
-    //         System.out.println("Name:" + this.getName() + "\n" + "Decreased Revenue: " + revenue + "\n");
-    //     }
-    // }
+    }
 
     /*
         Profit = Revenue - Wages

@@ -10,27 +10,24 @@ import java.io.*;
 public class ReadEvent extends FileReading
 {
     private EventController controller;
+    private PropertyController propertyController;
 
-
-    public ReadEvent(EventController controller)
+    public ReadEvent(EventController controller, PropertyController propertyController)
     {
         this.controller = controller;
+        this.propertyController = propertyController;
     }
 
-    public void processLine(String[] line)
+    public void processLine(String[] line) throws IllegalArgumentException
     {
         Event event = null;
-        int year    = Integer.parseInt(line[0]);
-        String eventString = line[1];
-        String property = line[2];
+        // Check the property exists in the map
 
-        EventFactory evFact = new EventFactory();
-
-        event = evFact.createEvent(eventString);
-        event.setYear(year);
-        event.setProperty(property);
-
+        EventFactory evFact = new EventFactory(this.propertyController);
+        event = evFact.createEvent(line);
+        
         controller.addEvent(event);
+
     }
 
 
