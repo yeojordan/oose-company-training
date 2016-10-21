@@ -34,6 +34,7 @@ public class Start
             SimulatorController controller  = null;
             PropertyController propController = new PropertyController();
             PlanController planController = new PlanController();
+            EventController eventController = new EventController();
             controller = new SimulatorController();
 
             // Perform file reading for Property file
@@ -43,9 +44,10 @@ public class Start
         // To be removed
         controller.setPropertyController(propController);
             // Perform file reading for Event file
-            fileReader = new ReadEvent(controller);
+            fileReader = new ReadEvent(eventController);
             fileReader.read(eventFile);
-
+        controller.setEventController(eventController);
+        
             // Perform file reading for Plan file
             fileReader = new ReadPlan(planController);
             fileReader.read(planFile);

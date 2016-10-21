@@ -15,7 +15,8 @@ public class SimulatorController
     // private Company primaryCompany;
     private PropertyController propertyController;
     //private Map<String, Property> propertyMap;
-    private List<Event> eventList;
+    // private List<Event> eventList;
+    private EventController eventController;
     //private List<Plan> planList;
     private PlanController planController;
     private SimulatorView view;
@@ -29,7 +30,8 @@ public class SimulatorController
         // this.primaryCompany = null;
         //this.propertyMap    = new HashMap<String, Property>();
         this.propertyController = null;
-        this.eventList      = new LinkedList<Event>();
+        //this.eventList      = new LinkedList<Event>();
+        this.eventController = null;
         //this.planList       = new LinkedList<Plan>();
         this.planController = null;
         this.view           = new SimulatorView();
@@ -49,6 +51,11 @@ public class SimulatorController
         this.planController = planController;
     }
 
+    public void setEventController(EventController eventController)
+    {
+        this.eventController = eventController;
+    }
+
     public void runSimulation(int start, int end)
     {
 
@@ -66,7 +73,7 @@ public class SimulatorController
             throw new IllegalArgumentException("Start year cannot be earlier than end year");
         }
 
-        Iterator<Event> it = eventList.iterator();
+        Iterator<Event> it = eventController.getEvents().iterator();
         Iterator<Plan> planIt = planController.getPlans().iterator();
 
 
@@ -172,7 +179,7 @@ public class SimulatorController
 
     public void printEvents()
     {
-        view.displayEvents(eventList);
+        view.displayEvents(this.eventController.getEvents());
     }
 
     public void printPlans()
@@ -245,10 +252,10 @@ public class SimulatorController
     //     this.planList.add(plan);
     // }
 
-    public void addEvent(Event event)
-    {
-        this.eventList.add(event);
-    }
+    // public void addEvent(Event event)
+    // {
+    //     this.eventList.add(event);
+    // }
 
     // public Map<String, Property> getProperties()
     // {

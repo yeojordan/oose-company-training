@@ -9,10 +9,10 @@ import java.io.*;
 
 public class ReadEvent extends FileReading
 {
-    private SimulatorController controller;
+    private EventController controller;
 
 
-    public ReadEvent(SimulatorController controller)
+    public ReadEvent(EventController controller)
     {
         this.controller = controller;
     }
