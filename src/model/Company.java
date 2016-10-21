@@ -147,7 +147,6 @@ public class Company extends Property
 
     public double getBankBalance()
     {
-
         return bank.getMonetaryValue();
     }
 

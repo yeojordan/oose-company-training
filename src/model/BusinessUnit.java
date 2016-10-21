@@ -2,7 +2,7 @@ package model;
 
 import controller.observer.WageObserver;
 
-public class BusinessUnit extends Property //implements WageObserver
+public class BusinessUnit extends Property implements WageObserver
 {
     private double revenue;
     private double wages;
@@ -42,33 +42,31 @@ public class BusinessUnit extends Property //implements WageObserver
         this.revenue = revenue;
     }
 
-    public void updateWages(boolean increaseWages)
+    public void update(double multiplier)
     {
-        if (increaseWages)
-        {
-            this.wages = this.wages * 1.05;
-            System.out.println("Name:" + this.getName() + "\n" + "Increased Wages: " + wages + "\n");
-        }
-        else
-        {
-            this.wages = this.wages * 0.95;
-            System.out.println("Name:" + this.getName() + "\n" + "Decreased Wages: " + wages + "\n");
-        }
+        this.wages *= multiplier;
+            //System.out.println("Name:" + this.getName() + "\n" + "Increased Wages: " + wages + "\n");
+        //
+        // else
+        // {
+        //     this.wages = this.wages * 0.95;
+        //     System.out.println("Name:" + this.getName() + "\n" + "Decreased Wages: " + wages + "\n");
+        // }
     }
 
-    public void updateRevenue(boolean increaseRev)
-    {
-        if (increaseRev)
-        {
-            this.revenue = this.revenue * 1.05;
-            System.out.println("Name:" + this.getName() + "\n" + "Increased Revenue: " + revenue + "\n");
-        }
-        else
-        {
-            this.revenue = this.revenue * 0.95;
-            System.out.println("Name:" + this.getName() + "\n" + "Decreased Revenue: " + revenue + "\n");
-        }
-    }
+    // public void updateRevenue(boolean increaseRev)
+    // {
+    //     if (increaseRev)
+    //     {
+    //         this.revenue = this.revenue * 1.05;
+    //         System.out.println("Name:" + this.getName() + "\n" + "Increased Revenue: " + revenue + "\n");
+    //     }
+    //     else
+    //     {
+    //         this.revenue = this.revenue * 0.95;
+    //         System.out.println("Name:" + this.getName() + "\n" + "Decreased Revenue: " + revenue + "\n");
+    //     }
+    // }
 
     /*
         Profit = Revenue - Wages

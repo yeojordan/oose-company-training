@@ -2,16 +2,19 @@ package controller;
 
 import java.util.*;
 import model.*;
+import controller.observer.*;
 
 public class PropertyController
 {
     private Company primaryCompany;
     private Map<String, Property> propertyMap;
+    private List<WageObserver> wageObservers;
 
     public PropertyController()
     {
         this.primaryCompany = null;
         this.propertyMap    = new HashMap<String, Property>();
+        this.wageObservers = new LinkedList<WageObserver>();
     }
 
 
@@ -36,20 +39,25 @@ public class PropertyController
 
     }
 
-/*    public void addObserver(WageObserver property)
+    public void addObserver(WageObserver property)
     {
-        String name = null;
-        BusinessUnit prop = (BusinessUnit)(property);
-        name = prop.getName();
-
-        wageObservers.put( name, (WageObserver)property);
+        wageObservers.add((WageObserver)property);
     }
 
-    public void removeObserver(String key)
+    // public void removeObserver(String key)
+    // {
+    //     wageObservers.remove(key);
+    // }
+
+    public void notifyObservers(double multiplier)
     {
-        wageObservers.remove(key);
+        for (WageObserver wo : wageObservers )
+        {
+            wo.update(multiplier);
+        }
     }
-*/
+
+
     public Company getPrimaryCompany()
     {
         return this.primaryCompany;

@@ -59,7 +59,10 @@ public class ReadProperty extends FileReading
         }
 
         //properties.put(name, prop);
-
+        if ( prop instanceof BusinessUnit )
+        {
+            this.controller.addObserver((BusinessUnit)prop);
+        }
 
         this.controller.addProperty(prop);
 
