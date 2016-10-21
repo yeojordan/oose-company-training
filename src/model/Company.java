@@ -1,6 +1,7 @@
 package model;
 
 import java.util.*;
+import java.text.*;
 
 public class Company extends Property
 {
@@ -16,8 +17,9 @@ public class Company extends Property
 
     public String toString()
     {
+        DecimalFormat df = new DecimalFormat("0.00");
         String toString = super.toString();
-        toString = toString + "Bank Balance: " + bank.getMonetaryValue() + "\n";
+        toString = toString + "Bank Balance: " + df.format(bank.getMonetaryValue()) + "\n";
         return toString;
     }
 
@@ -70,7 +72,7 @@ public class Company extends Property
         //  bank.calculateProfit();
         System.out.println("Company Name: " + getName() +"\nBank Balance after interest "); //+ bank.getMonetaryValue() + "\n\n");
 
-        System.out.printf("%f\n\n", bank.getMonetaryValue() );
+        System.out.printf("%.2f\n\n", bank.getMonetaryValue() );
         if (owns != null)
         {
 
@@ -149,27 +151,5 @@ public class Company extends Property
         return bank.getMonetaryValue();
     }
 
-/*
-    // Calculate own profit not include anything owned.
-    public void figureOutProfit()
-    {
-
-        if (totalProfit <= 0.0)
-        {
-            bank.setValue(totalProfit);
-
-        }
-        // If the profit > 0
-        else
-        {
-            // Update company's profit
-            setProfit(totalProfit*0.5);
-
-            // Update company's bank account
-            bank.setValue(totalProfit*0.5);
-        }
-    }
-
-*/
 
 }
