@@ -10,26 +10,22 @@ import java.io.*;
 public class ReadPlan extends FileReading
 {
     private PlanController controller;
+    private PropertyController propertyController;
 
-
-    public ReadPlan(PlanController controller)
+    public ReadPlan(PlanController controller, PropertyController propertyController)
     {
         this.controller = controller;
+        this.propertyController = propertyController;
     }
 
-    public void processLine(String[] line)
+    public void processLine(String[] line) throws IllegalArgumentException
     {
         Plan plan = null;
-        int year = Integer.parseInt(line[0]);
-        char decision = line[1].charAt(0);
-        String property = line[2];
 
-        PlanFactory pFact = new PlanFactory();
+        PlanFactory pFact = new PlanFactory(propertyController);
 
-        plan = pFact.createPlan(decision);
+        plan = pFact.createPlan(line);
 
-        plan.setYear(year);
-        plan.setProperty(property);
         //plan = new Plan(year, decision, property);
 
         controller.addPlan(plan);

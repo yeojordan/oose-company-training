@@ -45,7 +45,7 @@ public class Start
         controller.setEventController(eventController);
 
             // Perform file reading for Plan file
-            fileReader = new ReadPlan(planController);
+            fileReader = new ReadPlan(planController, propController);
             fileReader.read(planFile);
         controller.setPlanController(planController);
 
