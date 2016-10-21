@@ -20,7 +20,7 @@ public class ReadEvent extends FileReading
     public void processLine(String[] line)
     {
         Event event = null;
-        int year = Integer.parseInt(line[0]);
+        int year    = Integer.parseInt(line[0]);
         String eventString = line[1];
         String property = line[2];
 

@@ -2,7 +2,7 @@ package model;
 
 import controller.observer.WageObserver;
 
-public class BusinessUnit extends Property implements WageObserver
+public class BusinessUnit extends Property //implements WageObserver
 {
     private double revenue;
     private double wages;

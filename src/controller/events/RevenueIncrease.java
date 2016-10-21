@@ -16,7 +16,9 @@ public class RevenueIncrease extends Event
     {
         double newRevenue;
 
-
+        if (properties == null)
+            System.out.println("PROPERTY MAP NULL");
+            
         Property prop = properties.get(getProperty());
 
         newRevenue = ((BusinessUnit)(prop)).getRevenue();

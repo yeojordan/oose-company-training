@@ -9,9 +9,9 @@ import java.io.*;
 public class ReadProperty extends FileReading
 {
 
-    private SimulatorController controller;
+    private PropertyController controller;
 
-    public ReadProperty(SimulatorController controller)
+    public ReadProperty(PropertyController controller)
     {
         this.controller = controller;
     }

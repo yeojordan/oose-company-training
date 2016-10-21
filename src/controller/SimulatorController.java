@@ -8,31 +8,39 @@ import view.*;
 import controller.observer.*;
 import controller.plans.*;
 import controller.events.*;
+import controller.*;
 
 public class SimulatorController
 {
-    private Company primaryCompany;
-    private Map<String, Property> propertyMap;
+    // private Company primaryCompany;
+    private PropertyController propertyController;
+    //private Map<String, Property> propertyMap;
     private List<Event> eventList;
     private List<Plan> planList;
 
     private SimulatorView view;
 
-    private Map<String, WageObserver> wageObservers;
+    //private Map<String, WageObserver> wageObservers;
     // private List<Event> eventList;
 
 
     public SimulatorController()
     {
-        this.primaryCompany = null;
-        this.propertyMap    = new HashMap<String, Property>();
+        // this.primaryCompany = null;
+        //this.propertyMap    = new HashMap<String, Property>();
+        this.propertyController = null;
         this.eventList      = new LinkedList<Event>();
         this.planList       = new LinkedList<Plan>();
         this.view           = new SimulatorView();
-        this.wageObservers  = new HashMap<String, WageObserver>();
+        //this.wageObservers  = new HashMap<String, WageObserver>();
         // Add all wage observers
         //addAllObservers();
 
+    }
+
+    public void setPropertyController(PropertyController propertyController)
+    {
+        this.propertyController = propertyController;
     }
 
     public void runSimulation(int start, int end)
@@ -43,7 +51,7 @@ public class SimulatorController
         boolean increase = false;
         HashMap<Character, PlanAction> plans = new HashMap<Character, PlanAction>();
 
-        addAllObservers();
+        //addAllObservers();
 
     //    updatePlans(plans);
 
@@ -79,7 +87,7 @@ public class SimulatorController
             while (eventYear == i)
             {
 
-                event.performEvent(this.propertyMap);
+                event.performEvent(this.propertyController.getProperties());
 
                 if (it.hasNext())
                 {
@@ -96,7 +104,7 @@ public class SimulatorController
             // Plan File
             while (planYear == i)
             {
-                plan.performPlan(this.propertyMap, this.primaryCompany);
+                plan.performPlan(this.propertyController.getProperties(), this.propertyController.getPrimaryCompany());
 
 
                 if (planIt.hasNext())
@@ -113,7 +121,7 @@ public class SimulatorController
 
 
             // Calculate interest for each company for previous year's bank balance
-            for ( Property comp : propertyMap.values())
+            for ( Property comp : propertyController.getProperties().values() )
             {
                 if (comp instanceof Company )
                 {
@@ -148,12 +156,12 @@ public class SimulatorController
 */
     public void printProperties()
     {
-        view.displayProperties(propertyMap);
+        view.displayProperties(propertyController.getProperties());
     }
 
     public void printBusinessUnits()
     {
-        view.displayBusinessUnits(propertyMap);
+        view.displayBusinessUnits(this.propertyController.getProperties());
     }
 
     public void printEvents()
@@ -167,7 +175,7 @@ public class SimulatorController
     }
 
     // Add all observers to the map
-    public void addAllObservers()
+/*    public void addAllObservers()
     {
         try
         {
@@ -193,36 +201,38 @@ public class SimulatorController
 
 
     }
+*/
 
-    public void addObserver(WageObserver property)
-    {
-        String name = null;
-        BusinessUnit prop = (BusinessUnit)(property);
-        name = prop.getName();
 
-        wageObservers.put( name, (WageObserver)property);
-    }
+    // public void addObserver(WageObserver property)
+    // {
+    //     String name = null;
+    //     BusinessUnit prop = (BusinessUnit)(property);
+    //     name = prop.getName();
+    //
+    //     wageObservers.put( name, (WageObserver)property);
+    // }
+    //
+    // public void removeObserver(String key)
+    // {
+    //     wageObservers.remove(key);
+    // }
 
-    public void removeObserver(String key)
-    {
-        wageObservers.remove(key);
-    }
-
-    // Insert a property the map
-    public void addProperty(Property property)
-    {
-        String key;
-        key = property.getName();
-
-        // If the company to insert is the first (primary)
-        if ( (property instanceof Company) && (primaryCompany == null) )
-        {
-            primaryCompany = (Company)property;
-        }
-
-        this.propertyMap.put(key, property);
-
-    }
+    // // Insert a property the map
+    // public void addProperty(Property property)
+    // {
+    //     String key;
+    //     key = property.getName();
+    //
+    //     // If the company to insert is the first (primary)
+    //     if ( (property instanceof Company) && (primaryCompany == null) )
+    //     {
+    //         primaryCompany = (Company)property;
+    //     }
+    //
+    //     this.propertyMap.put(key, property);
+    //
+    // }
 
     public void addPlan(Plan plan)
     {
@@ -234,10 +244,10 @@ public class SimulatorController
         this.eventList.add(event);
     }
 
-    public Map<String, Property> getProperties()
-    {
-        return this.propertyMap;
-    }
+    // public Map<String, Property> getProperties()
+    // {
+    //     return this.propertyMap;
+    // }
 
 
 }
