@@ -51,7 +51,7 @@ public class Start
 
 
 
-controller.printEvents();
+//controller.printEvents();
 
             // System.out.println("Initial Values");
             // controller.printProperties();

@@ -3,6 +3,7 @@ package controller.factories;
 import model.*;
 import controller.plans.*;
 import controller.*;
+
 public class PlanFactory
 {
     private PropertyController propertyController;
@@ -43,6 +44,10 @@ public class PlanFactory
         if ( !(propertyController.getProperties().containsKey(property)) )
         {
             throw new IllegalArgumentException("Buy/Sell Plan must have a valid property");
+        }
+        else if ( property.equals(this.propertyController.getPrimaryCompany().getName()) )
+        {
+            throw new IllegalArgumentException("Primary Company cannot be bought or sold");
         }
     }
 

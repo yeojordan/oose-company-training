@@ -32,7 +32,7 @@ public class Buy extends Plan
         Property property = null;
         Company oldOwner = null;
         String ogOwner;
-        
+
         // Property to be bought
         String propertyName = getProperty();
 
@@ -56,7 +56,7 @@ public class Buy extends Plan
 
             // Set owner name in property bought
             property.setOwner(primaryCompany.getName());
-
+ 
             // Add property to new owner
             primaryCompany.addProperty(property);
 

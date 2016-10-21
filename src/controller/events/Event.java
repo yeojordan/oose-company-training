@@ -53,6 +53,5 @@ public abstract class Event
         return toString;
     }
 
-    // public abstract void performEvent(Map<String, Property> propertyMap);
     public abstract void performEvent(PropertyController propertyController);
 }

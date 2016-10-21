@@ -4,6 +4,8 @@ import model.*;
 import controller.plans.*;
 import controller.events.*;
 import controller.*;
+
+
 public class EventFactory
 {
     private PropertyController propertyController;
@@ -53,8 +55,6 @@ public class EventFactory
         event.setYear(year);
         event.setProperty(property);
 
-        System.out.println(event.toString());
-
         return event;
     }
 
@@ -80,6 +80,7 @@ public class EventFactory
 
     public void validateValue(String property) throws IllegalArgumentException
     {
+
         if ( property.equals("") )
         {
             throw new IllegalArgumentException("Value Event must apply to a Single Business Unit or Company");

@@ -30,11 +30,11 @@ public abstract class FileReading
         }
         catch(IOException e)
         {
-            throw new IOException("Error occurred in file reading");
+            throw new IOException("Error occurred in file reading ");
         }
         catch(IllegalArgumentException e)
         {
-            throw new IllegalArgumentException("Error in file parsing." + e.getMessage() );
+            throw new IllegalArgumentException("Error in file parsing. " + e.getMessage() );
         }
         finally
         {
