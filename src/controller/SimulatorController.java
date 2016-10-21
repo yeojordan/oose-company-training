@@ -16,8 +16,8 @@ public class SimulatorController
     private PropertyController propertyController;
     //private Map<String, Property> propertyMap;
     private List<Event> eventList;
-    private List<Plan> planList;
-
+    //private List<Plan> planList;
+    private PlanController planController;
     private SimulatorView view;
 
     //private Map<String, WageObserver> wageObservers;
@@ -30,7 +30,8 @@ public class SimulatorController
         //this.propertyMap    = new HashMap<String, Property>();
         this.propertyController = null;
         this.eventList      = new LinkedList<Event>();
-        this.planList       = new LinkedList<Plan>();
+        //this.planList       = new LinkedList<Plan>();
+        this.planController = null;
         this.view           = new SimulatorView();
         //this.wageObservers  = new HashMap<String, WageObserver>();
         // Add all wage observers
@@ -41,6 +42,11 @@ public class SimulatorController
     public void setPropertyController(PropertyController propertyController)
     {
         this.propertyController = propertyController;
+    }
+
+    public void setPlanController(PlanController planController)
+    {
+        this.planController = planController;
     }
 
     public void runSimulation(int start, int end)
@@ -61,7 +67,7 @@ public class SimulatorController
         }
 
         Iterator<Event> it = eventList.iterator();
-        Iterator<Plan> planIt = planList.iterator();
+        Iterator<Plan> planIt = planController.getPlans().iterator();
 
 
         Plan plan = null;
@@ -171,7 +177,7 @@ public class SimulatorController
 
     public void printPlans()
     {
-        view.displayPlans(planList);
+        view.displayPlans(this.planController.getPlans());
     }
 
     // Add all observers to the map
@@ -234,10 +240,10 @@ public class SimulatorController
     //
     // }
 
-    public void addPlan(Plan plan)
-    {
-        this.planList.add(plan);
-    }
+    // public void addPlan(Plan plan)
+    // {
+    //     this.planList.add(plan);
+    // }
 
     public void addEvent(Event event)
     {

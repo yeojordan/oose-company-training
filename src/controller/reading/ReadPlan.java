@@ -9,10 +9,10 @@ import java.io.*;
 
 public class ReadPlan extends FileReading
 {
-    private SimulatorController controller;
+    private PlanController controller;
 
 
-    public ReadPlan(SimulatorController controller)
+    public ReadPlan(PlanController controller)
     {
         this.controller = controller;
     }

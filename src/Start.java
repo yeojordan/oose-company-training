@@ -33,21 +33,23 @@ public class Start
             FileReading fileReader          = null;
             SimulatorController controller  = null;
             PropertyController propController = new PropertyController();
+            PlanController planController = new PlanController();
             controller = new SimulatorController();
 
             // Perform file reading for Property file
             fileReader = new ReadProperty(propController);
             fileReader.read(propertyFile);
 
-        // To be removed         
+        // To be removed
         controller.setPropertyController(propController);
             // Perform file reading for Event file
             fileReader = new ReadEvent(controller);
             fileReader.read(eventFile);
 
             // Perform file reading for Plan file
-            fileReader = new ReadPlan(controller);
+            fileReader = new ReadPlan(planController);
             fileReader.read(planFile);
+        controller.setPlanController(planController);
 
 
 
