@@ -14,13 +14,16 @@ public class ValueDecrease extends Event
 
     public void performEvent(PropertyController propertyController)
     {
+        double newValue;
         Map<String, Property> properties = propertyController.getProperties();
 
         Property prop = properties.get(getProperty());
         // Find Business Units
+        newValue = prop.getMonetaryValue();
 
-        prop.updateValue(0.95);
-
+        newValue *= 0.95;
+        //prop.updateValue(0.95);
+        prop.setMonetaryValue(newValue);
     }
 
 }
