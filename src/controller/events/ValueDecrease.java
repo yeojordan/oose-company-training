@@ -3,7 +3,7 @@ package controller.events;
 import model.*;
 import controller.events.*;
 import java.util.*;
-
+import controller.*;
 
 public class ValueDecrease extends Event
 {
@@ -12,9 +12,9 @@ public class ValueDecrease extends Event
         super();
     }
 
-    public void performEvent(Map<String, Property> properties)
+    public void performEvent(PropertyController propertyController)
     {
-        double newWages;
+        Map<String, Property> properties = propertyController.getProperties();
 
         Property prop = properties.get(getProperty());
         // Find Business Units

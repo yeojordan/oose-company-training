@@ -3,6 +3,7 @@ package controller.events;
 import java.util.*;
 import controller.events.*;
 import model.*;
+import controller.*;
 
 public abstract class Event
 {
@@ -52,5 +53,6 @@ public abstract class Event
         return toString;
     }
 
-    public abstract void performEvent(Map<String, Property> propertyMap);
+    // public abstract void performEvent(Map<String, Property> propertyMap);
+    public abstract void performEvent(PropertyController propertyController);
 }

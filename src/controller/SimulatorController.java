@@ -59,10 +59,6 @@ public class SimulatorController
     public void runSimulation(int start, int end)
     {
 
-        char ev;
-        char inc;
-        boolean increase = false;
-        HashMap<Character, PlanAction> plans = new HashMap<Character, PlanAction>();
 
         //addAllObservers();
 
@@ -73,81 +69,23 @@ public class SimulatorController
             throw new IllegalArgumentException("Start year cannot be earlier than end year");
         }
 
-        Iterator<Event> it = eventController.getEvents().iterator();
-        Iterator<Plan> planIt = planController.getPlans().iterator();
 
-
-        Plan plan = null;
-
-        Event event = null;
         int eventYear;
-        event = it.next();
-        eventYear = event.getYear();
 
-        int planYear;
-        plan = planIt.next();
-        planYear = plan.getYear();
-        // Loop for the intended number of years.
-        for (int i = start; i <= end; i++)
+        for (int currYear = start; currYear <= end; currYear++)
         {
 
             System.out.println("\n\n\n\n");
-            System.out.println("YEAR: " + i);
+            System.out.println("YEAR: " + currYear);
 
-            printProperties();
+            view.displayProperties(propertyController.getProperties());
 
-            // While event still in the current year
-            while (eventYear == i)
-            {
+            eventController.handleEvent(currYear, this.propertyController);
+            
+            planController.handlePlan(currYear, this.propertyController);
 
-                event.performEvent(this.propertyController.getProperties());
+            propertyController.updateProfit();
 
-                if (it.hasNext())
-                {
-                    event = it.next();
-                    eventYear = event.getYear();
-                }
-                else
-                {
-                    eventYear = i +1;
-                }
-            }//End event while
-
-
-            // Plan File
-            while (planYear == i)
-            {
-                plan.performPlan(this.propertyController.getProperties(), this.propertyController.getPrimaryCompany());
-
-
-                if (planIt.hasNext())
-                {
-                    plan = planIt.next();
-                    planYear = plan.getYear();
-                }
-                else
-                {
-                    planYear = i +1;
-                }
-
-            }//End plan while
-
-
-            // Calculate interest for each company for previous year's bank balance
-            for ( Property comp : propertyController.getProperties().values() )
-            {
-                if (comp instanceof Company )
-                {
-                    // If company has no owner or sold to unnamed buyer
-                    if ( (comp.getOwner().equals("")) || (comp.getOwner().equals("Unnamed Buyer")) )
-                    {
-                        //System.out.println("Company to Calculate Profit On: " + comp.getName() + "\nOwner: " + comp.getOwner() + "\n\n\n");
-                        // Updates profit
-                        ((Company)(comp)).calculateProfit();
-
-                    }
-                }
-            }
 
         }//End for
     }
@@ -167,10 +105,10 @@ public class SimulatorController
     }
 
 */
-    public void printProperties()
-    {
-        view.displayProperties(propertyController.getProperties());
-    }
+    // public void printProperties()
+    // {
+    //     view.displayProperties(propertyController.getProperties());
+    // }
 
     public void printBusinessUnits()
     {

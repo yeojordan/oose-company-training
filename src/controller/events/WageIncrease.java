@@ -3,6 +3,7 @@ package controller.events;
 import model.*;
 import controller.events.*;
 import java.util.*;
+import controller.*;
 
 public class WageIncrease extends Event
 {
@@ -11,10 +12,10 @@ public class WageIncrease extends Event
         super();
     }
 
-    public void performEvent(Map<String, Property> properties)
+    public void performEvent(PropertyController propertyController)
     {
         double newWages;
-
+        Map<String, Property> properties = propertyController.getProperties();
         // Loop through all properties
         for ( Property prop : properties.values() )
         {

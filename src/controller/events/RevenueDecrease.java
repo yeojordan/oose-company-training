@@ -3,7 +3,7 @@ package controller.events;
 import model.*;
 import controller.events.*;
 import java.util.*;
-
+import controller.*;
 
 public class RevenueDecrease extends Event
 {
@@ -12,10 +12,10 @@ public class RevenueDecrease extends Event
         super();
     }
 
-    public void performEvent(Map<String, Property> properties)
+    public void performEvent(PropertyController propertyController)
     {
         double newRevenue;
-
+        Map<String, Property> properties = propertyController.getProperties();
 
         Property prop = properties.get(getProperty());
 
