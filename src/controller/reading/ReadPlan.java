@@ -2,6 +2,7 @@ package controller.reading;
 
 import controller.*;
 import model.*;
+import model.exceptions.*;
 import controller.plans.*;
 import controller.factories.*;
 import java.util.*;
@@ -18,7 +19,7 @@ public class ReadPlan extends FileReading
         this.propertyController = propertyController;
     }
 
-    public void processLine(String[] line) throws IllegalArgumentException
+    public void processLine(String[] line) throws FileFormatException
     {
         Plan plan = null;
 

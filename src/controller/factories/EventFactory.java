@@ -4,7 +4,7 @@ import model.*;
 import controller.plans.*;
 import controller.events.*;
 import controller.*;
-
+import model.exceptions.*;
 
 public class EventFactory
 {
@@ -14,7 +14,7 @@ public class EventFactory
         this.propertyController = propertyController;
     }
 
-    public Event createEvent(String[] line) throws IllegalArgumentException
+    public Event createEvent(String[] line) throws EventException
     {
         Event event;
         int year        = Integer.parseInt(line[0]);
@@ -49,7 +49,7 @@ public class EventFactory
                 event = new ValueDecrease();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid event type");
+                throw new EventException("Invalid event type");
         }
 
         event.setYear(year);
@@ -60,30 +60,30 @@ public class EventFactory
 
 
 
-    public void validateWage(String property) throws IllegalArgumentException
+    public void validateWage(String property) throws WageEventException
     {
         if ( !(property.equals("")) )
         {
-            throw new IllegalArgumentException("Wage Event Cannot apply to a Single Business Unit");
+            throw new WageEventException("Wage Event Cannot apply to a Single Business Unit");
         }
 
     }
 
-    public void validateRevenue(String property) throws IllegalArgumentException
+    public void validateRevenue(String property) throws RevenueEventException
     {
         if ( property.equals("") )
         {
-            throw new IllegalArgumentException("Revenue Event must apply to a Single Business Unit");
+            throw new RevenueEventException("Revenue Event must apply to a Single Business Unit");
         }
 
     }
 
-    public void validateValue(String property) throws IllegalArgumentException
+    public void validateValue(String property) throws ValueEventException
     {
 
         if ( property.equals("") )
         {
-            throw new IllegalArgumentException("Value Event must apply to a Single Business Unit or Company");
+            throw new ValueEventException("Value Event must apply to a Single Business Unit or Company");
         }
     }
 

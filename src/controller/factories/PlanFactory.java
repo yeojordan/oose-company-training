@@ -1,6 +1,7 @@
 package controller.factories;
 
 import model.*;
+import model.exceptions.*;
 import controller.plans.*;
 import controller.*;
 
@@ -13,7 +14,7 @@ public class PlanFactory
         this.propertyController = propertyController;
     }
 
-    public Plan createPlan(String[] line) throws IllegalArgumentException
+    public Plan createPlan(String[] line) throws PlanException
     {
         Plan plan;
         int year = Integer.parseInt(line[0]);
@@ -30,7 +31,7 @@ public class PlanFactory
                 plan = new Sell();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid Plan Type");
+                throw new PlanException("Invalid Plan Type");
         }
 
         plan.setYear(year);
@@ -39,15 +40,15 @@ public class PlanFactory
     }
 
 
-    public void validateProperty(String property)
+    public void validateProperty(String property) throws BuySellException
     {
         if ( !(propertyController.getProperties().containsKey(property)) )
         {
-            throw new IllegalArgumentException("Buy/Sell Plan must have a valid property");
+            throw new BuySellException("Buy/Sell Plan must have a valid property");
         }
         else if ( property.equals(this.propertyController.getPrimaryCompany().getName()) )
         {
-            throw new IllegalArgumentException("Primary Company cannot be bought or sold");
+            throw new BuySellException("Primary Company cannot be bought or sold");
         }
     }
 

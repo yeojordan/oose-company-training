@@ -3,6 +3,7 @@ import java.io.*;
 import controller.reading.*;
 import controller.*;
 import model.*;
+import model.exceptions.*;
 import controller.plans.*;
 import controller.events.*;
 public class Start
@@ -76,6 +77,10 @@ public class Start
             System.out.println(e.getMessage());
         }
         catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch(FileFormatException e)
         {
             System.out.println(e.getMessage());
         }

@@ -56,7 +56,7 @@ public class Buy extends Plan
 
             // Set owner name in property bought
             property.setOwner(primaryCompany.getName());
- 
+
             // Add property to new owner
             primaryCompany.addProperty(property);
 

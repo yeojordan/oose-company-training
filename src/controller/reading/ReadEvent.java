@@ -6,6 +6,7 @@ import controller.factories.*;
 import controller.events.*;
 import java.util.*;
 import java.io.*;
+import model.exceptions.*;
 
 public class ReadEvent extends FileReading
 {
@@ -18,14 +19,14 @@ public class ReadEvent extends FileReading
         this.propertyController = propertyController;
     }
 
-    public void processLine(String[] line) throws IllegalArgumentException
+    public void processLine(String[] line) throws FileFormatException
     {
         Event event = null;
         // Check the property exists in the map
 
         EventFactory evFact = new EventFactory(this.propertyController);
         event = evFact.createEvent(line);
-        
+
         controller.addEvent(event);
 
     }

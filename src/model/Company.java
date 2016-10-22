@@ -34,17 +34,7 @@ public class Company extends Property
     {
         String name = null;
 
-        // Check if the property is a Company or Business Unit before
-        // adding it to the map of properties owned by the Company
-        if (property instanceof Company )
-        {
-            name = ((Company)property).getName();
-
-        }
-        else if ( property instanceof BusinessUnit)
-        {
-            name = ((BusinessUnit)property).getName();
-        }
+        name = property.getName();
 
         // Insert only if the current key is not already used.
         if ( !((this.owns).containsKey(name)) )

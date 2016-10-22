@@ -2,6 +2,7 @@ package controller;
 
 import java.util.*;
 import controller.events.*;
+import model.exceptions.*;
 
 public class EventController
 {
@@ -12,14 +13,14 @@ public class EventController
         this.eventList = new LinkedList<Event>();
     }
 
-    public void addEvent(Event event) throws IllegalArgumentException
+    public void addEvent(Event event) throws EventException
     {
         if(eventList.size() > 0)
         {
             Event tempEvent = eventList.get(eventList.size() - 1);
             if ( event.getYear() < tempEvent.getYear() || tempEvent == null )
             {
-                throw new IllegalArgumentException("Events must be listed in chronological order");
+                throw new EventException("Events must be listed in chronological order");
             }
         }
         this.eventList.add(event);
