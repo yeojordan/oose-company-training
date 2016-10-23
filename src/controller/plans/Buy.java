@@ -5,15 +5,12 @@ import model.*;
 
 public class Buy extends Plan
 {
-    //private Map<String, Property> properties;
-
-    // public Buy(Map<String, Property> properties)
-    // {
-    //     this.properties = properties;
-    // }
-
+    /**
+     * Default Constructor for Buy Object
+     */
     public Buy()
     {
+        /* Allow the Plan super class to handle intialisation */
         super();
     }
 
@@ -26,6 +23,12 @@ public class Buy extends Plan
         5. Remove property from old owner
         6. Decrease bank account by value of property
 
+    */
+
+    /**
+    * Execute a Buy plan
+    * @param  properties     The map of all properties in simulation
+    * @param  primaryCompany The primary company for the Simulatio
     */
     public void performPlan(Map<String, Property> properties, Company primaryCompany)
     {
@@ -73,15 +76,14 @@ public class Buy extends Plan
             // Decrease bank balance
             primaryCompany.updateBank(value*-1.0);
 
-
-            System.out.println("BUY PLAN OCCURRING \n\nBuying " + propertyName + "\n");
-
-            System.out.println("CURRENT BALANCE: " + primaryCompany.getBankBalance() + "\n" );
-
         }
 
     }
 
+     /**
+     * Retrieve the state of the Buy object
+     * @return String   The state of the Plan as a String
+     */
     public String toString()
     {
         String toString = super.toString();

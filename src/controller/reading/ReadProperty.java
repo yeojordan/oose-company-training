@@ -12,6 +12,10 @@ public class ReadProperty extends FileReading
 
     private PropertyController controller;
 
+    /**
+     * Default Constructor to create ReadProperty, for processing a Property file
+     * @param   controller  PropertyController to store properties
+     */
     public ReadProperty(PropertyController controller)
     {
         this.controller = controller;
@@ -23,9 +27,9 @@ public class ReadProperty extends FileReading
         String name     =   line[0];
         char type       =   line[1].charAt(0);
         String owner    =   line[2];
-        double worth = 0.0;
-        double revenue = 0.0;
-        double wages = 0.0;
+        double worth;
+        double revenue;
+        double wages;
 
 
         Map<String, Property> properties;
@@ -35,8 +39,6 @@ public class ReadProperty extends FileReading
         // Check the worth of a property is valid
         try
         {
-            if (line[3] == null)
-                System.out.println("DOGGO 1");
             worth = Double.parseDouble(line[3]);
         }
         catch(NumberFormatException e)
@@ -51,9 +53,9 @@ public class ReadProperty extends FileReading
         }
 
         // Create Company or Business Unit
-        // If entry is a Company
         if ( type == 'C' )
         {
+            // Validate there is no value for revenue or wages
             if ( !line[4].equals("") || !line[5].equals("") )
             {
                 throw new PropertyException("Invalid Property File");
@@ -61,18 +63,11 @@ public class ReadProperty extends FileReading
             prop = new Company();
 
         }
-        // If entry is a Business Unit
         else if ( type == 'B' )
         {
             // Check the revenue and wages are valid if it is a Business Unit
             try
             {
-                if (line[4] == null)
-                    System.out.println("DOGGO 2");
-
-                if (line[5] == null)
-                    System.out.println("DOGGO 3");
-
                 revenue = Double.parseDouble(line[4]);
                 wages   = Double.parseDouble(line[5]);
             }
@@ -96,8 +91,6 @@ public class ReadProperty extends FileReading
 
 
 
-        // properties = this.controller.getProperties();
-
         // Check if a property's owner is in the simulation
         if( properties.containsKey(owner) || owner.equals("") )
         {
@@ -107,35 +100,21 @@ public class ReadProperty extends FileReading
             {
                 ow.addProperty(prop);
             }
-
         }
         else
         {
             throw new PropertyException("Owner must be listed before properties it owns ");
         }
 
-
+        // Add the property to the list of WageObservers if it is a BusinessUnit
         if ( prop instanceof BusinessUnit )
         {
             this.controller.addObserver((BusinessUnit)prop);
         }
 
+        // Add the property to the map of properties
         this.controller.addProperty(prop);
 
     }
-
-    //
-    // public double valueValidation(String value)
-    // {
-    //     double val;
-    //     val = 0;
-    //     if ( !(value.equals("")) && value != null )
-    //     {
-    //         val =  Double.parseDouble(value);
-    //     }
-    //
-    //     return val;
-    // }
-
 
 }

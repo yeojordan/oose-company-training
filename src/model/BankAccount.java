@@ -4,6 +4,9 @@ public class BankAccount extends Property
 {
     private Company owner;
 
+    /**
+     * Default Constructor for Bank Account
+     */
     public BankAccount()
     {
         super();
@@ -11,53 +14,25 @@ public class BankAccount extends Property
 
     }
 
+    /**
+     * Set the value of the bank account
+     * @param monetaryValue Value to be added to bank account
+     */
     public void setValue(double monetaryValue)
     {
         double previousVal = super.getMonetaryValue();
         super.setMonetaryValue(monetaryValue + previousVal);
     }
 
-
-    public double getProfit()
-    {
-        return 0.0;
-        //double newProfit;
-        // Calculate profit
-        //newProfit = this.getMonetaryValue() * 0.05;
-        // Store profit
-        //super.setProfit(profit);
-    }
-
-    // public int getValue()
-    // {
-    //     return this.monetaryValue;
-    // }
-    //
-    // public int getProfit()
-    // {
-    //     return this.profit;
-    // }
-    //
-    // public String toString()
-    // {
-    //     String toString = "Balance :" + this.monetaryValue + "\n" + "Profit: "
-    //     + this.profit;
-    //
-    //     return toString;
-    // }
-
-
-
-    /*
-        Balance > 0 : Profit = Balance * 0.05
-        Balance <= 0: Profit = Balance * 0.05
+    /**
+    * Calculate the interest (profit) of the bank account
     */
     public void calculateProfit()
     {
         double profit;
         double balance = super.getMonetaryValue();
         profit = balance * 0.05;
-        // System.out.println("Interest" + profit);
+
         setValue(profit);
     }
 

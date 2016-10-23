@@ -6,10 +6,18 @@ import model.*;
 import model.exceptions.*;
 import controller.plans.*;
 import controller.events.*;
+import view.*;
 public class Start
 {
     public static void main(String[] args)
     {
+        // File Reader and Controllers
+        FileReading fileReader              = null;
+        SimulatorController controller      = null;
+        PropertyController propController   = new PropertyController();
+        PlanController planController       = new PlanController();
+        EventController eventController     = new EventController();
+        SimulatorView view                  = new SimulatorView();
         try
         {
             if ( args.length != 5)
@@ -25,32 +33,24 @@ public class Start
             int endYear         =   Integer.parseInt(args[4]);
 
 
-            // File Reader and Controller
-            FileReading fileReader          = null;
-            SimulatorController controller  = null;
-            PropertyController propController   = new PropertyController();
-            PlanController planController       = new PlanController();
-            EventController eventController     = new EventController();
 
-            controller = new SimulatorController();
+
 
             // Perform file reading for Property file
             fileReader = new ReadProperty(propController);
             fileReader.read(propertyFile);
 
-        // To be removed
-        controller.setPropertyController(propController);
             // Perform file reading for Event file
             fileReader = new ReadEvent(eventController, propController);
             fileReader.read(eventFile);
-        controller.setEventController(eventController);
+
 
             // Perform file reading for Plan file
             fileReader = new ReadPlan(planController, propController);
             fileReader.read(planFile);
-        controller.setPlanController(planController);
 
 
+            controller = new SimulatorController(propController, eventController, planController, view);
 
 //controller.printEvents();
 
@@ -71,18 +71,25 @@ public class Start
             // controller.printPlans();
 
         }
-        catch(IllegalArgumentException e)
+        // catch(IllegalArgumentException e)
+        // {
+        //     //System.out.println(e.getMessage());
+        //     view.displayException(e);
+        // }
+        // catch(IOException e)
+        // {
+        //     // System.out.println(e.getMessage());
+        //     view.displayException(e);
+        // }
+        catch(IllegalArgumentException | IOException | PropertyException | EventException | PlanException  e)
         {
-
-            System.out.println(e.getMessage());
-        }
-        catch(IOException e)
-        {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
+            view.displayException(e);
         }
         catch(FileFormatException e)
         {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
+            view.displayException(e);
         }
 
 

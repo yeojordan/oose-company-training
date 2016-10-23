@@ -5,17 +5,15 @@ import model.*;
 
 public class Sell extends Plan
 {
-    //private Map<String, Property> properties;
-
-    // public Sell(Map<String, Property> properties)
-    // {
-    //     this.properties = properties;
-    // }
-
+    /**
+     * Default Constructor for Sell Object
+     */
     public Sell()
     {
+        /* Allow the Plan super class to handle intialisation */
         super();
     }
+
     /* Buy a business unit or company
 
         1. Check if owned already
@@ -25,6 +23,12 @@ public class Sell extends Plan
         5. Remove property from old owner
         6. Decrease bank account by value of property
 
+    */
+
+    /**
+    * Execute a Sell plan
+    * @param  properties     The map of all properties in simulation
+    * @param  primaryCompany The primary company for the Simulatio
     */
     public void performPlan(Map<String, Property> properties, Company primaryCompany)
     {
@@ -42,26 +46,24 @@ public class Sell extends Plan
         // If the primary company owns the property
         if ( (primaryCompany.checkOwnership(propertyName)) && (property != null) )
         {
-
             value = property.getMonetaryValue();
             // Add property to new owner
             primaryCompany.removeProperty(property);
 
-            // Inrease bank balance
+            // Increase bank balance
             primaryCompany.updateBank(value);
 
             property.setOwner("Unnamed Buyer");
-
-
-            System.out.println("SELL PLAN OCCURRING \n\nSelling " + propertyName + "\n");
-
-            System.out.println("CURRENT BALANCE: " + primaryCompany.getBankBalance() + "\n" );
         }
 
 
 
     }
 
+    /**
+    * Retrieve the state of the Sell object
+    * @return String   The state of the Plan as a String
+    */
     public String toString()
     {
         String toString = super.toString();

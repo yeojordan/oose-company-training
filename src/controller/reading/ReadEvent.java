@@ -13,20 +13,34 @@ public class ReadEvent extends FileReading
     private EventController controller;
     private PropertyController propertyController;
 
+    /**
+     * Default Constructor to create ReadEvent, for processing an Event file
+     * @param   controller          EventController to store events
+     * @param   propertyController  PropertyController to assist in validating events
+     */
     public ReadEvent(EventController controller, PropertyController propertyController)
     {
         this.controller = controller;
         this.propertyController = propertyController;
     }
 
+    /**
+     * Accepts an array of Strings containing parameters for an Event.
+     * Delegates the creation and then adds the newly created Event to the
+     * eventController
+     * @param line  An array of strings containing parameters for an Event
+     */
     public void processLine(String[] line) throws FileFormatException
     {
         Event event = null;
-        // Check the property exists in the map
 
-        EventFactory evFact = new EventFactory(this.propertyController);
-        event = evFact.createEvent(line);
+        // Create a new EventCreator, giving it access to the current properties
+        EventCreator evCreator = new EventCreator(this.propertyController);
 
+        // Create a new EventCreator, giving it access to the current properties
+        event = evCreator.createEvent(line);
+
+        // Add the event to the EventController
         controller.addEvent(event);
 
     }

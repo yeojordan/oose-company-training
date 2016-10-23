@@ -10,6 +10,11 @@ public class PropertyController
     private Map<String, Property> propertyMap;
     private List<WageObserver> wageObservers;
 
+    /**
+     * Default Constructor for PropertyController
+     * Instantiates a new HashMap for properties and new LinkedList for observers
+     * Sets the primaryCompany to be null until one is added
+     */
     public PropertyController()
     {
         this.primaryCompany = null;
@@ -18,12 +23,20 @@ public class PropertyController
     }
 
 
+    /**
+     * Retrieve the map of properties
+     * @return Map of properties in PropertyController
+     */
     public Map<String, Property> getProperties()
     {
         return this.propertyMap;
     }
 
-    // Insert a property the map
+
+    /**
+     * Insert a property to the current map of properties
+     * @param property [description]
+     */
     public void addProperty(Property property)
     {
         String key;
@@ -39,16 +52,20 @@ public class PropertyController
 
     }
 
+    /**
+     * Add an observer to the list of observers
+     * @param property The property to be added as an observer
+     */
     public void addObserver(WageObserver property)
     {
         wageObservers.add((WageObserver)property);
     }
 
-    // public void removeObserver(String key)
-    // {
-    //     wageObservers.remove(key);
-    // }
 
+    /**
+     * Notify all observers of a change in wages
+     * @param multiplier Value to multiply wages by
+     */
     public void notifyObservers(double multiplier)
     {
         for (WageObserver wo : wageObservers )
@@ -58,27 +75,29 @@ public class PropertyController
     }
 
 
+    /**
+     * Retrieve the primary company
+     * @return The Primary Company
+     */
     public Company getPrimaryCompany()
     {
         return this.primaryCompany;
     }
 
+    /**
+     * Calculate the profit of each property in the map
+     */
     public void updateProfit()
     {
-        // Calculate interest for each company for previous year's bank balance
+        /* Iterate through each property */
         for ( Property prop : this.propertyMap.values() )
         {
-            // if (comp instanceof Company )
-            // {
-                // If company has no owner or sold to unnamed buyer
-                if ( (prop.getOwner().equals("")) || prop.getOwner().equals("Unnamed Buyer") )
-                {
-                    //System.out.println("Company to Calculate Profit On: " + comp.getName() + "\nOwner: " + comp.getOwner() + "\n\n\n");
-                    // Updates profit
-                    // ((Company)(comp)).calculateProfit();
-                    prop.calculateProfit();
-                }
-            // }
+             /* Calculate profit on properties without owners */
+            if ( (prop.getOwner().equals("")) || prop.getOwner().equals("Unnamed Buyer") )
+            {
+                prop.calculateProfit();
+            }
+
         }
     }
 }

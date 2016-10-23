@@ -13,22 +13,34 @@ public class ReadPlan extends FileReading
     private PlanController controller;
     private PropertyController propertyController;
 
+    /**
+     * Default Constructor to create ReadPlan, for processing a Plan file
+     * @param   controller          PlanController to add store plans
+     * @param   propertyController  PropertyController to assist in validating plans
+     */
     public ReadPlan(PlanController controller, PropertyController propertyController)
     {
         this.controller = controller;
         this.propertyController = propertyController;
     }
 
+    /**
+     * Accepts an array of Strings containing parameters for a Plan.
+     * Delegates the creation and then adds the newly created Plan to the
+     * planController
+     * @param line  An array of strings containing parameters for a Plan
+     */
     public void processLine(String[] line) throws FileFormatException
     {
         Plan plan = null;
 
-        PlanFactory pFact = new PlanFactory(propertyController);
+        // Create a new PlanCreator, giving it access to the current properties
+        PlanCreator pFact = new PlanCreator(propertyController);
 
+        // Create a new PlanCreator, giving it access to the current properties
         plan = pFact.createPlan(line);
 
-        //plan = new Plan(year, decision, property);
-
+        // Add the plan to the EventController
         controller.addPlan(plan);
     }
 

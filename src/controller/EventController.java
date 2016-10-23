@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.*;
+import model.exceptions.*;
 import controller.events.*;
 import model.exceptions.*;
 
@@ -8,13 +9,21 @@ public class EventController
 {
     private List<Event> eventList;
 
+    /**
+     * Default Constructor for EventController
+     */
     public EventController()
     {
         this.eventList = new LinkedList<Event>();
     }
 
+    /**
+     * Adds an event to the list of events
+     * @param event [description]
+     */
     public void addEvent(Event event) throws EventException
     {
+        /* Validates the newest event to be added is in chronological order */
         if(eventList.size() > 0)
         {
             Event tempEvent = eventList.get(eventList.size() - 1);
@@ -27,17 +36,27 @@ public class EventController
 
     }
 
+    /**
+     * Retrieve the entire list of events
+     * @return List of events in the EventController
+     */
     public List<Event> getEvents()
     {
         return this.eventList;
     }
 
-    public void handleEvent(int year, PropertyController propertyController)
+    /**
+     * Handle an event based on a given year of a simulation
+     * @param  year                 The current year of the simulation
+     * @param  propertyController   The property administrator
+     */
+    public void handleEvent(int year, PropertyController propertyController) throws EventException
     {
+        // Instantiate an iterator for events
         Iterator<Event> eventIterator = this.eventList.iterator();
         Event event = null;
 
-        // If there are more events
+        // Check if there are more events
         if (eventIterator.hasNext() )
         {
             // Retrieve next event

@@ -6,7 +6,11 @@ import model.exceptions.*;
 
 public abstract class FileReading
 {
-    // Template Method
+    /**
+     * Opens the file, reads a line, delegates processing to subclass and
+     * finally closes the file.
+     * @param filename  The name of the file to be read from
+     */
     public void read(String filename) throws FileFormatException, IOException
     {
         String[] result = new String[6];
@@ -17,11 +21,19 @@ public abstract class FileReading
             File file = new File(filename);
             input = new Scanner(file);
 
-            String firstLine = input.nextLine();
+            /* Retrieve the first line from the file */
+            String line = input.nextLine();
+
+            /* Reading each subsequent line from a file*/
             while (input.hasNextLine())
             {
-                String line = input.nextLine();
+
+                line = input.nextLine();
+
+                /* Store the line as an aray of Strings */
                 result = line.split(",", -1);
+
+                /* Call the template method from a subclass */
                 processLine(result);
             }
         }
@@ -31,8 +43,6 @@ public abstract class FileReading
         }
         catch(FileFormatException e)
         {
-            //System.out.println(e.getMessage());
-            // String message = "Error in file parsing.\n" + e.getMessage();
             throw new FileFormatException("Error in file parsing.\n", e);
         }
         finally
@@ -45,11 +55,14 @@ public abstract class FileReading
             // {
             //     throw new IOException("File Stream failed to close");
             // }
-
         }
     }
 
-    //protected abstract void readFile(String filename);
 
+    /**
+     * Template method to be implemted by subclasses. To perform processing
+     * on the line read from a file
+     * @param line An array of strings containing the line from a file
+     */
     abstract void processLine(String[] line) throws FileFormatException;
 }
