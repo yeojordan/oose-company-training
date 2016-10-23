@@ -62,7 +62,7 @@ public class PlanController
      * @param  year                 The current year of the simulation
      * @param  propertyController   The property administrator
      */
-    public void handlePlan(int year, PropertyController propertyController)
+    public void handlePlan(int year, PropertyController propertyController) throws FileFormatException
     {
         // Instantiate an iterator for plans
         Iterator<Plan> planIterator = this.planList.iterator();

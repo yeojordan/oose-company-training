@@ -2,6 +2,7 @@ package controller.plans;
 
 import java.util.*;
 import model.*;
+import model.exceptions.*;
 
 public class Sell extends Plan
 {
@@ -30,7 +31,7 @@ public class Sell extends Plan
     * @param  properties     The map of all properties in simulation
     * @param  primaryCompany The primary company for the Simulatio
     */
-    public void performPlan(Map<String, Property> properties, Company primaryCompany)
+    public void performPlan(Map<String, Property> properties, Company primaryCompany) throws FileFormatException
     {
         Property property = null;
 
@@ -54,6 +55,10 @@ public class Sell extends Plan
             primaryCompany.updateBank(value);
 
             property.setOwner("Unnamed Buyer");
+        }
+        else
+        {
+            throw new FileFormatException("Cannot Sell a Property you do not own");
         }
 
 

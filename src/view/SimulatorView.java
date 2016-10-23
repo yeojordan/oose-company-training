@@ -14,11 +14,28 @@ public class SimulatorView
      * Display all properties in the properties map
      * @param  propertyMap  Map of properties
      */
-    public void displayProperties(Map<String, Property> propertyMap)
+    public void displayProperties(int currYear, Map<String, Property> propertyMap)
     {
+        System.out.println("\n\n\n\n");
+        System.out.println("YEAR: " + currYear);
+
         for(Property prop : propertyMap.values() )
         {
             System.out.println(prop.toString());
+        }
+    }
+
+    public void displayCompanies(int currYear, Map<String, Property> propertyMap)
+    {
+        System.out.println("\n\n\n\n");
+        System.out.println("YEAR: " + currYear);
+
+        for(Property prop : propertyMap.values() )
+        {
+            if( prop instanceof Company )
+            {
+                System.out.println(prop.toString());
+            }
         }
     }
 
@@ -26,8 +43,11 @@ public class SimulatorView
      * Display all business units in the properties map
      * @param  propertyMap  Map of properties
      */
-    public void displayBusinessUnits(Map<String, Property> propertyMap)
+    public void displayBusinessUnits(int currYear, Map<String, Property> propertyMap)
     {
+        System.out.println("\n\n\n\n");
+        System.out.println("YEAR: " + currYear);
+
         for(Property prop : propertyMap.values() )
         {
             if( prop instanceof BusinessUnit )

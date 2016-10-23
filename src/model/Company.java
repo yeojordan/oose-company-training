@@ -63,10 +63,10 @@ public class Company extends Property
         if (owns != null)
         {
 
-            // System.out.println("Iterating through owned properties");
+
             for ( Property owned : owns.values() )
             {
-                System.out.println(owned.getName() + "\n");
+
                 owned.calculateProfit();
 
                 totalProfit += owned.getProfit();

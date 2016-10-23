@@ -1,6 +1,7 @@
 package controller.plans;
 
 import model.*;
+import model.exceptions.*;
 import java.util.*;
 public abstract class Plan
 {
@@ -77,5 +78,5 @@ public abstract class Plan
      * Abstract method to be overriden by subclasses of Plan
      * @param propertyController The property administrator
      */
-    public abstract void performPlan(Map<String, Property> propertyMap, Company primaryCompany);
+    public abstract void performPlan(Map<String, Property> propertyMap, Company primaryCompany) throws FileFormatException;
 }

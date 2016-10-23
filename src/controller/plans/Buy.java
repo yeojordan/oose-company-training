@@ -2,6 +2,7 @@ package controller.plans;
 
 import java.util.*;
 import model.*;
+import model.exceptions.*;
 
 public class Buy extends Plan
 {
@@ -30,7 +31,7 @@ public class Buy extends Plan
     * @param  properties     The map of all properties in simulation
     * @param  primaryCompany The primary company for the Simulatio
     */
-    public void performPlan(Map<String, Property> properties, Company primaryCompany)
+    public void performPlan(Map<String, Property> properties, Company primaryCompany) throws FileFormatException
     {
         Property property = null;
         Company oldOwner = null;
@@ -76,6 +77,10 @@ public class Buy extends Plan
             // Decrease bank balance
             primaryCompany.updateBank(value*-1.0);
 
+        }
+        else
+        {
+            throw new FileFormatException("Cannot Buy a Property you already own");
         }
 
     }

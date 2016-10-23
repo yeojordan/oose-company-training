@@ -53,9 +53,9 @@ public abstract class Property
     public String toString()
     {
         String toString = "";
-        toString = toString + "Name:    " + this.name + "\n";
-        toString = toString + "Owner:   " + this.owner + "\n";
-        toString = toString + "Worth:   " + this.monetaryValue + "\n";
+        toString = toString + "Name:         " + this.name + "\n";
+        toString = toString + "Owner:        " + this.owner + "\n";
+        toString = toString + "Worth:        " + this.monetaryValue + "\n";
 
         return toString;
     }

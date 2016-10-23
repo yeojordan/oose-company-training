@@ -38,7 +38,7 @@ public class SimulatorController
 
 
     }
-    public void runSimulation(int start, int end) throws EventException, PlanException, PropertyException, IllegalArgumentException
+    public void runSimulation(int start, int end) throws FileFormatException, IllegalArgumentException
     {
 
         if( start > end )
@@ -52,10 +52,9 @@ public class SimulatorController
         for (int currYear = start; currYear <= end; currYear++)
         {
 
-            System.out.println("\n\n\n\n");
-            System.out.println("YEAR: " + currYear);
 
-            view.displayProperties(propertyController.getProperties());
+
+            view.displayCompanies(currYear, propertyController.getProperties());
 
             eventController.handleEvent(currYear, this.propertyController);
 
@@ -65,21 +64,6 @@ public class SimulatorController
 
 
         }//End for
-    }
-
-    public void printBusinessUnits()
-    {
-        view.displayBusinessUnits(this.propertyController.getProperties());
-    }
-
-    public void printEvents()
-    {
-        view.displayEvents(this.eventController.getEvents());
-    }
-
-    public void printPlans()
-    {
-        view.displayPlans(this.planController.getPlans());
     }
 
 
