@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Container for BusinessUnit
+*/
+
+
 package model;
 
 import controller.observer.WageObserver;
@@ -8,7 +18,7 @@ public class BusinessUnit extends Property implements WageObserver
     private double wages;
 
     /**
-     * Default Constructor for a BusinessUnit
+     * Constructor for a BusinessUnit
      * @param   rev     Initial revenue for the BusinessUnit
      * @param   wages   Initial wages for the BusinessUnit
      */
@@ -85,7 +95,7 @@ public class BusinessUnit extends Property implements WageObserver
         double profit = 0.0;
 
         profit = this.revenue - this.wages;
-    
+
         super.setProfit(profit);
     }
 

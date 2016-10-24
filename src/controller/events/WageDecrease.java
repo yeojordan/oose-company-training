@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles wage decrease events
+*/
+
+
 package controller.events;
 
 import model.*;

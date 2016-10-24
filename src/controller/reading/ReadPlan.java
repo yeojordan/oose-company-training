@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles the necessary parsing and delegation of creation of Plans
+*/
+
+
 package controller.reading;
 
 import controller.*;
@@ -14,7 +24,7 @@ public class ReadPlan extends FileReading
     private PropertyController propertyController;
 
     /**
-     * Default Constructor to create ReadPlan, for processing a Plan file
+     * Constructor to create ReadPlan, for processing a Plan file
      * @param   controller          PlanController to add store plans
      * @param   propertyController  PropertyController to assist in validating plans
      */

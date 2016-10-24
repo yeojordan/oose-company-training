@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   14/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles Sell plans
+*/
+
+
 package controller.plans;
 
 import java.util.*;
@@ -7,7 +17,7 @@ import model.exceptions.*;
 public class Sell extends Plan
 {
     /**
-     * Default Constructor for Sell Object
+     * Constructor for Sell Object
      */
     public Sell()
     {

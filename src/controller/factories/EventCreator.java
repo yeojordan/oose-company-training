@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   18/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Creates Events and performs validation
+*/
+
+
 package controller.factories;
 
 import model.*;
@@ -11,7 +21,7 @@ public class EventCreator
     private PropertyController propertyController;
 
     /**
-     * Default Constructor for the EventCreator
+     * Constructor for the EventCreator
      * @param  propertyController The property Administrator
      */
     public EventCreator(PropertyController propertyController)

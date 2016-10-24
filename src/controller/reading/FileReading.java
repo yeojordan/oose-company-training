@@ -1,3 +1,14 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   05/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: An abstract class for File Reading, as each file will need to be
+*           processed differently. However, there are common steps between each.
+*/
+
+
 package controller.reading;
 
 import java.util.*;

@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: An abstract class for Events, as all events share common fields
+*/
+
+
 package controller.events;
 
 import java.util.*;
@@ -12,7 +22,7 @@ public abstract class Event
     private String property;
 
     /**
-     * Default Constructor an Event 
+     * Constructor an Event
      */
     public Event()
     {

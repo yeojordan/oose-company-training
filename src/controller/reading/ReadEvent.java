@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles the necessary parsing and delegation of creation of Events
+*/
+
+
 package controller.reading;
 
 import controller.*;
@@ -14,7 +24,7 @@ public class ReadEvent extends FileReading
     private PropertyController propertyController;
 
     /**
-     * Default Constructor to create ReadEvent, for processing an Event file
+     * Constructor to create ReadEvent, for processing an Event file
      * @param   controller          EventController to store events
      * @param   propertyController  PropertyController to assist in validating events
      */

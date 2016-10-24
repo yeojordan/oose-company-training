@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   16/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles user input and output
+*/
+
+
 package view;
 
 import model.*;

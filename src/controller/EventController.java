@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles performing events and addition of events
+*/
+
+
 package controller;
 
 import java.util.*;
@@ -10,7 +20,7 @@ public class EventController
     private List<Event> eventList;
 
     /**
-     * Default Constructor for EventController
+     * Constructor for EventController
      */
     public EventController()
     {
@@ -23,10 +33,12 @@ public class EventController
      */
     public void addEvent(Event event) throws EventException
     {
+        Event tempEvent;
+
         /* Validates the newest event to be added is in chronological order */
         if(eventList.size() > 0)
         {
-            Event tempEvent = eventList.get(eventList.size() - 1);
+            tempEvent = eventList.get(eventList.size() - 1);
             if ( event.getYear() < tempEvent.getYear() || tempEvent == null )
             {
                 throw new EventException("Events must be listed in chronological order");

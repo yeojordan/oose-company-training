@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Main for Simulation
+*/
+
+
 import java.util.*;
 import java.io.*;
 import controller.reading.*;
@@ -7,6 +17,9 @@ import model.exceptions.*;
 import controller.plans.*;
 import controller.events.*;
 import view.*;
+
+
+
 public class Start
 {
     public static void main(String[] args)
@@ -18,6 +31,13 @@ public class Start
         PlanController planController       = new PlanController();
         EventController eventController     = new EventController();
         SimulatorView view                  = new SimulatorView();
+
+        String propertyFile;
+        String eventFile;
+        String planFile;
+        int startYear;
+        int endYear;
+
         try
         {
             if ( args.length != 5)
@@ -26,14 +46,11 @@ public class Start
             }
 
             // Organise command line parameters
-            String propertyFile =   args[0];
-            String eventFile    =   args[1];
-            String planFile     =   args[2];
-            int startYear       =   Integer.parseInt(args[3]);
-            int endYear         =   Integer.parseInt(args[4]);
-
-
-
+            propertyFile   =   args[0];
+            eventFile      =   args[1];
+            planFile       =   args[2];
+            startYear      =   Integer.parseInt(args[3]);
+            endYear        =   Integer.parseInt(args[4]);
 
 
             // Perform file reading for Property file
@@ -44,51 +61,31 @@ public class Start
             fileReader = new ReadEvent(eventController, propController);
             fileReader.read(eventFile);
 
-
             // Perform file reading for Plan file
             fileReader = new ReadPlan(planController, propController);
             fileReader.read(planFile);
 
-
+            // Create simulater controller
             controller = new SimulatorController(propController, eventController, planController, view);
 
-//controller.printEvents();
-
-            // System.out.println("Initial Values");
-            // controller.printProperties();
-            //controller.printBusinessUnits();
-
-            // Run Simulation
+            // Run simulation
             controller.runSimulation(startYear, endYear);
 
-            // System.out.println("\n\n\n\n Final Values");
-
-
-            // Print Models
-            // controller.printProperties();
-            //controller.printBusinessUnits();
-            //controller.printEvents();
-            // controller.printPlans();
-
         }
-        // catch(IllegalArgumentException e)
-        // {
-        //     //System.out.println(e.getMessage());
-        //     view.displayException(e);
-        // }
-        // catch(IOException e)
-        // {
-        //     // System.out.println(e.getMessage());
-        //     view.displayException(e);
-        // }
+        catch(NumberFormatException e)
+        {
+            view.displayException(e);
+        }
         catch(IllegalArgumentException | IOException | PropertyException | EventException | PlanException  e)
         {
-            // System.out.println(e.getMessage());
             view.displayException(e);
         }
         catch(FileFormatException e)
         {
-            // System.out.println(e.getMessage());
+            view.displayException(e);
+        }
+        catch(Exception e)
+        {
             view.displayException(e);
         }
 

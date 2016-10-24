@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles performing Properties and addition of properties
+*/
+
+
 package controller;
 
 import java.util.*;
@@ -11,7 +21,7 @@ public class PropertyController
     private List<WageObserver> wageObservers;
 
     /**
-     * Default Constructor for PropertyController
+     * Constructor for PropertyController
      * Instantiates a new HashMap for properties and new LinkedList for observers
      * Sets the primaryCompany to be null until one is added
      */

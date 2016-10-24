@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles the necessary parsing and delegation of creation of Properties
+*/
+
+
 package controller.reading;
 
 import controller.*;
@@ -13,7 +23,7 @@ public class ReadProperty extends FileReading
     private PropertyController controller;
 
     /**
-     * Default Constructor to create ReadProperty, for processing a Property file
+     * Constructor to create ReadProperty, for processing a Property file
      * @param   controller  PropertyController to store properties
      */
     public ReadProperty(PropertyController controller)
@@ -87,6 +97,11 @@ public class ReadProperty extends FileReading
         // Set common class fields
         prop.setName(name);
         prop.setOwner(owner);
+        if (owner.equals(""))
+        {
+            prop.setOwner("-");
+        }
+
         prop.setMonetaryValue(worth);
 
 

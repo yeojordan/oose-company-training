@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   16/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Container for Bank Account 
+*/
+
+
 package model;
 
 public class BankAccount extends Property
@@ -5,7 +15,7 @@ public class BankAccount extends Property
     private Company owner;
 
     /**
-     * Default Constructor for Bank Account
+     * Constructor for Bank Account
      */
     public BankAccount()
     {

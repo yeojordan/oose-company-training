@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   21/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles performing plans and addition of plans
+*/
+
+
 package controller;
 
 import java.util.*;
@@ -11,7 +21,7 @@ public class PlanController
     private List<Plan> planList;
 
     /**
-     * Default Constructor for PlanController
+     * Constructor for PlanController
      */
     public PlanController()
     {
@@ -45,17 +55,6 @@ public class PlanController
 
         this.planList.add(plan);
     }
-
-    /*
-        1. Get a year
-        2. Create an iterator
-        3. Retrieve event
-        4. Check the year matches
-        5. Remove event
-        6. retrieve next event
-        7. If event doesn't match DONT REMOVE from list
-
-    */
 
     /**
      * Handle an planbased on a given year of a simulation

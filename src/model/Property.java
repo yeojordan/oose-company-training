@@ -11,7 +11,7 @@ public abstract class Property
     private String owner;
 
     /**
-     * Default Constructor for Property
+     * Constructor for Property
      */
     public Property()
     {

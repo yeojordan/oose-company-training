@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   16/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Handles Buy plans
+*/
+
+
 package controller.plans;
 
 import java.util.*;
@@ -7,24 +17,13 @@ import model.exceptions.*;
 public class Buy extends Plan
 {
     /**
-     * Default Constructor for Buy Object
+     * Constructor for Buy Object
      */
     public Buy()
     {
         /* Allow the Plan super class to handle intialisation */
         super();
     }
-
-    /* Buy a business unit or company
-
-        1. Check if owned already
-        2. Look for cycle of ownership
-        3. Check for an owner exists in the map of properties
-        4. Add property to owned map
-        5. Remove property from old owner
-        6. Decrease bank account by value of property
-
-    */
 
     /**
     * Execute a Buy plan
@@ -36,53 +35,59 @@ public class Buy extends Plan
         Property property = null;
         Company oldOwner = null;
         String ogOwner;
-
-        // Property to be bought
-        String propertyName = getProperty();
-
-        // Retrieve property from map
-        property = properties.get(propertyName);
-
-        // Retrieve value of property
         double value;
-
-        // Retrieve name of original owner
-        ogOwner = property.getOwner();
-
-        // Retrieve original owner from map
-        oldOwner = (Company)(properties.get(ogOwner));
-
-        // If the primary company doesn't already own the property
-        // and property exists in map
-        if ( !(primaryCompany.checkOwnership(propertyName)) && (property != null) )
+        String propertyName;
+        try
         {
-            value = property.getMonetaryValue();
+            // Property to be bought
+            propertyName = getProperty();
 
-            // Set owner name in property bought
-            property.setOwner(primaryCompany.getName());
+            // Retrieve property from map
+            property = properties.get(propertyName);
 
-            // Add property to new owner
-            primaryCompany.addProperty(property);
 
-            // Check if old owner is in simulation
-            if (oldOwner != null)
+
+            // Retrieve name of original owner
+            ogOwner = property.getOwner();
+
+            // Retrieve original owner from map
+            oldOwner = (Company)(properties.get(ogOwner));
+
+            // If the primary company doesn't already own the property
+            // and property exists in map
+            if ( !(primaryCompany.checkOwnership(propertyName)) && (property != null) )
             {
-                // Remove property from old owner
-                oldOwner.removeProperty(property);
-                // Increase bank balance, by value of property
-                oldOwner.updateBank(value);
+                value = property.getMonetaryValue();
+
+                // Set owner name in property bought
+                property.setOwner(primaryCompany.getName());
+
+                // Add property to new owner
+                primaryCompany.addProperty(property);
+
+                // Check if old owner is in simulation
+                if (oldOwner != null)
+                {
+                    // Remove property from old owner
+                    oldOwner.removeProperty(property);
+                    // Increase bank balance, by value of property
+                    oldOwner.updateBank(value);
+
+                }
+
+                // Decrease bank balance
+                primaryCompany.updateBank(value*-1.0);
 
             }
-
-            // Decrease bank balance
-            primaryCompany.updateBank(value*-1.0);
-
+            else
+            {
+                throw new FileFormatException("Cannot Buy a Property you already own");
+            }
         }
-        else
+        catch(ClassCastException e)
         {
-            throw new FileFormatException("Cannot Buy a Property you already own");
+            throw new FileFormatException("Invalid Typecast", e);
         }
-
     }
 
      /**

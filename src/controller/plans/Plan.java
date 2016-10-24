@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   18/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: An abstract class for Plans, as all plans share common fields
+*/
+
+
 package controller.plans;
 
 import model.*;
@@ -9,7 +19,7 @@ public abstract class Plan
     int year;
 
     /**
-     * Default Constructor for a Plan
+     * Constructor for a Plan
      */
     public Plan()
     {

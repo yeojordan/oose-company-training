@@ -1,3 +1,13 @@
+/**
+* @Author: Jordan Yeo
+* @Date:   16/10/2016
+* @Project: OOSE Assignment SEM 2 2016
+* @Last modified by:   Jordan Yeo
+* @Last modified time: 24/10/2016
+* @Purpose: Container for Company
+*/
+
+
 package model;
 
 import java.util.*;
@@ -9,7 +19,7 @@ public class Company extends Property
     private BankAccount bank;
 
     /**
-     * Default Constructor for Company
+     * Constructor for Company
      */
     public Company()
     {
