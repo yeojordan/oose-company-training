@@ -2,7 +2,7 @@
 * @Author: Jordan Yeo
 * @Date:   21/10/2016
 * @Project: OOSE Assignment SEM 2 2016
-* @Last modified by:   Jordan Yeo
+* @Last modified by:   jordanyeo
 * @Last modified time: 24/10/2016
 * @Purpose: Main for Simulation
 */
@@ -31,12 +31,12 @@ public class Start
         PlanController planController       = new PlanController();
         EventController eventController     = new EventController();
         SimulatorView view                  = new SimulatorView();
-
-        String propertyFile;
-        String eventFile;
-        String planFile;
-        int startYear;
-        int endYear;
+        // 
+        // String propertyFile;
+        // String eventFile;
+        // String planFile;
+        // int startYear;
+        // int endYear;
 
         try
         {
@@ -46,11 +46,11 @@ public class Start
             }
 
             // Organise command line parameters
-            propertyFile   =   args[0];
-            eventFile      =   args[1];
-            planFile       =   args[2];
-            startYear      =   Integer.parseInt(args[3]);
-            endYear        =   Integer.parseInt(args[4]);
+            String propertyFile   =   args[0];
+            String eventFile      =   args[1];
+            String planFile       =   args[2];
+            int startYear      =   Integer.parseInt(args[3]);
+            int endYear        =   Integer.parseInt(args[4]);
 
 
             // Perform file reading for Property file

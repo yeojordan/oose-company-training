@@ -2,7 +2,7 @@
 * @Author: Jordan Yeo
 * @Date:   21/10/2016
 * @Project: OOSE Assignment SEM 2 2016
-* @Last modified by:   Jordan Yeo
+* @Last modified by:   jordanyeo
 * @Last modified time: 24/10/2016
 * @Purpose: Controls the timing of the entire simulation
 */
@@ -15,11 +15,11 @@ import java.util.*;
 import model.*;
 import model.exceptions.*;
 import view.*;
-import controller.*;
+
 import controller.observer.*;
 import controller.plans.*;
 import controller.events.*;
-
+import controller.*;
 
 public class SimulatorController
 {
@@ -65,7 +65,7 @@ public class SimulatorController
     {
 
         /* Prevent the simulation from running if the start or end year is invalid */
-        if( start > end || start < 0 || end < 0 )
+        if( start > end )//|| start < 0 || end < 0 )
         {
             throw new IllegalArgumentException("Invalid year for start or end of simulation");
         }

@@ -2,7 +2,7 @@
 * @Author: Jordan Yeo
 * @Date:   21/10/2016
 * @Project: OOSE Assignment SEM 2 2016
-* @Last modified by:   Jordan Yeo
+* @Last modified by:   jordanyeo
 * @Last modified time: 24/10/2016
 * @Purpose: Handles performing Properties and addition of properties
 */
@@ -103,7 +103,8 @@ public class PropertyController
         for ( Property prop : this.propertyMap.values() )
         {
              /* Calculate profit on properties without owners */
-            if ( (prop.getOwner().equals("")) || prop.getOwner().equals("Unnamed Buyer") )
+            if ( (prop.getOwner().equals("")) || prop.getOwner().equals("Unnamed Buyer")
+                                    || prop.getOwner().equals("-"))
             {
                 prop.calculateProfit();
             }

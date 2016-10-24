@@ -2,7 +2,7 @@
 * @Author: Jordan Yeo
 * @Date:   16/10/2016
 * @Project: OOSE Assignment SEM 2 2016
-* @Last modified by:   Jordan Yeo
+* @Last modified by:   jordanyeo
 * @Last modified time: 24/10/2016
 * @Purpose: Handles Buy plans
 */
@@ -35,17 +35,16 @@ public class Buy extends Plan
         Property property = null;
         Company oldOwner = null;
         String ogOwner;
-        double value;
+
         String propertyName;
-        try
-        {
+
             // Property to be bought
             propertyName = getProperty();
 
             // Retrieve property from map
             property = properties.get(propertyName);
 
-
+            double value;
 
             // Retrieve name of original owner
             ogOwner = property.getOwner();
@@ -83,11 +82,7 @@ public class Buy extends Plan
             {
                 throw new FileFormatException("Cannot Buy a Property you already own");
             }
-        }
-        catch(ClassCastException e)
-        {
-            throw new FileFormatException("Invalid Typecast", e);
-        }
+
     }
 
      /**

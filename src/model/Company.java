@@ -2,7 +2,7 @@
 * @Author: Jordan Yeo
 * @Date:   16/10/2016
 * @Project: OOSE Assignment SEM 2 2016
-* @Last modified by:   Jordan Yeo
+* @Last modified by:   jordanyeo
 * @Last modified time: 24/10/2016
 * @Purpose: Container for Company
 */
@@ -68,7 +68,7 @@ public class Company extends Property
     {
         double totalProfit = 0.0;
 
-        //  bank.calculateProfit();
+        //bank.calculateProfit();
 
         if (owns != null)
         {

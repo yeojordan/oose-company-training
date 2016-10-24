@@ -2,9 +2,9 @@
 * @Author: Jordan Yeo
 * @Date:   16/10/2016
 * @Project: OOSE Assignment SEM 2 2016
-* @Last modified by:   Jordan Yeo
+* @Last modified by:   jordanyeo
 * @Last modified time: 24/10/2016
-* @Purpose: Container for Bank Account 
+* @Purpose: Container for Bank Account
 */
 
 
