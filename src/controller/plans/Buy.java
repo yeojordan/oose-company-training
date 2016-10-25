@@ -38,6 +38,8 @@ public class Buy extends Plan
 
         String propertyName;
 
+        try
+        {
             // Property to be bought
             propertyName = getProperty();
 
@@ -82,7 +84,11 @@ public class Buy extends Plan
             {
                 throw new FileFormatException("Cannot Buy a Property you already own");
             }
-
+        }
+        catch(ClassCastException e)
+        {
+            throw new FileFormatException("Invalid Typecast");
+        }
     }
 
      /**

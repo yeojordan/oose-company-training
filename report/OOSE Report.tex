@@ -1,95 +1,135 @@
 \documentclass{worksheet}
 
+\usepackage{pbox}
 \usepackage{amsmath}
-\usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{color, colortbl}
-\usepackage{listings}
-\usepackage{multicol}
-\usepackage{float}
-\usepackage{graphicx}
-\lstset{emptylines=1,
-	breaklines=true,escapeinside={(*@}{@*)},style=pseudocode}
+\definecolor{grey}{gray}{0.85}
+\newcommand{\row}[1]{\rowcolor{#1}}
 
-\usepackage{pgfkeys}
-\usepackage{booktabs}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,positioning,calc}
-\tikzstyle{var}=[draw,rectangle,minimum height=0.6cm,minimum width=0.8cm]
-\graphicspath{{.}}
+\usetikzlibrary{shapes.geometric}
 
+\definecolor{Aspar}{rgb}{0.53, 0.66, 0.42}
+\definecolor{Plum}{rgb}{0.56, 0.27,0.52}
+\definecolor{Oran}{rgb}{1.0, 0.66, 0.07}
+\renewcommand{\footrulewidth}{0.4pt}
+\lstset{language=java}
 
-%-------------------------------------------------------------------------------
-\title{Object Oriented Software Engineering (COMP2003) Report \\ }
-\author{Jordan Yeo}
-
+\unitname{OOSE (COMP2003)}
+\title{OOSE Assignment Report 2016}
 
 \begin{document}
-\section*{Introduction}
-This program is intended to simulate the sending and receiving of messages between a seven node network. The protocol used is sliding window. It has been implemented using the CNET program written by Chris McDonald from the University of Western Australia. The data link layer and application layer were the only layers deemed necessary by the assignment specification. 
+
+    \qsection{Introduction}
+	The following report is to accompany the OOSE Assignment 2016. It will discuss the use of polymorphism, design patterns, testability and plausible alternatives. 
+	
+	\qsection{Design Patterns}
+	
+    \question{Polymorphism}
+     
+	Polymorphism has been used in multiple places through out the assignment. This has been done decouple the system. To allow for the use of polymorphism inheritance from abstract classes and interfaces has been used. 
+	
+	All Events share common classfields and as such Event is an abstract class that contains all common details and functionality. All subclasses of Event must implement a performEvent() function. Thus guaranteeing any event can be invoked through a call to this common function between all event subclasses.  
+	
+	Similarly, Plans have common classfields and all subclasses of Plan implement a performPlan() function. This allows for programming to an interface rather than an implementaion. The caller doesn't need to know what type of plan is to be performed. Only that the performPlan() can be called to invoke the method.
+	
+	Further more, polymorphism is used for WageObservers in the simulation. This allows any class interested in updating their wages to register as a WageObserver to receive updates. For further extensability other classes can become WageObservers if they implement the WageObserver interface. It doesn't matter the type of class that implements the interface, only that they implement the update() method. 
+\pagebreak
+	\question{Design Patterns}
+	
+	The following design patterns were implemented in the assignment: 
+	
+	\textbf{Factory Method Pattern\\}
+	The Factory Method was used to create Events and Plans. As each subtype of an Event share common fields, as well as the subtypes of Plan sharing common fields. This allows for the subtype to be hidden from the caller, but know that an Event or Plan will be returned. This also allows for extensability in the case of more Events or Plans being added in future.
+	\vspace{0.5cm}
+	
+	
+	
+	\textbf{Template Method Pattern\\}
+	The Template Method was used for reading and parsing each of the three files for the simulation. This was appropriate as all three files shared common steps for opening, reading a line and closing the file. The template method for processing the line allows the subclass to redefine certain steps of the algorithm without altering the larger algorithm's core structure.
+	
+%	can be invoked by the superclass when needed, without the callee needing to know when to perform its task. 
+	\vspace{0.5cm}
+\iffalse
+	\break
+	\textbf{Model, View, Controller Pattern \\}	
+	The MVC Pattern was incorporated for the design of the system's architecture. This allows for a separation of concerns for the system's tasks and flexibility with the components of the system.
+	\vspace{0.5cm}
+\fi
+	\textbf{Observer Pattern \\}
+	The Observer pattern was used for notifying all classes that implemented the WageObserver interface of a change in their current wages. The \textit{push} method was implemented, rather than the \textit{pull} method, in this situation to ensure all WageObservers are updated at the time of a WageEvent occurring. As the controller would know when a change needed to be reflected not the models. In the case of the simulation only Business Units were WageObservers, but this allows for other classes to become observers if they need to update their wages in a similar manner to Business Units. 
+	\vspace{0.5cm}
+
+	\textbf{Composite Pattern \\}	
+	The Composite Pattern has been used to allow the simulation to treat all Companies as an individual company or a composition of Properties.
+	Companies are able to own zero or more properties, excluding multiple bank accounts. The super class for Property enforces that all subclasses implement a calculateProfit() method. Regardless of whether the company owns multiple properties or zero, profit can be calculated via a call to calculateProfit(). A leaf is a Business Unit and a Company is a composite node.
+	\vspace{0.5cm}
+	
+	
+	
+%	 \begin{warning}
+%	 	Where have you used polymorphism, and why? Discuss any design patterns you’ve used that incorporate polymorphism. 
+%	 \end{warning}
+
+\pagebreak     
+    \qsection{Testability}
+     
+%	\textbf{Dependency Injection \\}
+	Dependency Injection has been used to assist in testability. Rather than each class having a new instance of a class it needs, an object is passed in instead. This will help when attempting to mock certain functionality of the simulation. This allows for easy replacement of classes, without other parts of the program knowing. Hard coded dependencies have been avoided by not allowing static method calls within the program. 
+	
+	Each model class has been given a relevant toString() method to allow for assistance in debugging logic errors. Thus the state of an object can be printed to analyse incorrect calculations or changes during the running of the simulation. 
+	
+	\textit{Dependency Inversion Principle} has been used in the Event and Plan classes. The invoker isn't concerned with what kind of Event or Plan it is, but rather that they all perform an Event or Plan respectively. If new Events or Plans were to be added for testing or extending the system they would only need to implement the repspective abstract method in Event and Plan.
+	
+	Segmenting the Simulator Controller into smaller controllers allows for increased testability. Rather than a single controller with a large amount of functionality to unit test, each controller can be tested in isolation. This will make unit testing simpler as there is less to test per controller. 
+	
+%	 \begin{note}
+%	 	How does your design achieve testability? That is, what have you done to make unit testing easier?
+%	 \end{note}
+%
+%
+
+%\pagebreak
+	\qsection{Alternatives}
+	
+	\question{Alternative One}
+	The first possible alternative is to implement the Command Pattern. Plan and Event subclasses could be created by one part of the simulation. All the necessary details to execute the action would be encapsulated within the relevant Command object. The executer of the command is a different part of the system. The executer decides when to execute the command and the necessary details for execution, parameters, are within the Command object.  \\
+   
+	\textbf{Pros}
+	\begin{itemize}
+		\item Allows for flexibility in timing and order of execution.
+		\item Commands can be passed like other object. 
+		\item Decoupling between sender and receiver.
+		\item Easily extensible, if new commands were to be added.
+	\end{itemize}
+	\textbf{Cons}
+	\begin{itemize}
+		\item The normal disadvantage to this approach is the increased number of classes needed. As each command needs its own class. (Currently this would not be different to my implementation).
+	\end{itemize}	
+	
+	
+	
+	\question{Alternative Two}
+	Currently there are six different classes for each Event type. From the three base Event types of wages, revenue and value. There is also a decrease or increase for each. Thus six classes in total. The decorator pattern could have been used to wrap the base class of Wage, Revenue or Value. This could have been used as there are different combinations that could have been created. While the core functionality of the calculation is the same and the only difference is the increase or decrease.  This follows the \textit{Open Close Principle}, where classes should be open for extension, but closed for modification.   \\
+	
+	
+	\textbf{Pros}
+	\begin{itemize}
+		\item Flexible alternative to subclassing, to extend behaviour.
+		\item Supports Open-Close Pinciple
+		\item The current wrapping for Events in this system would only extend to increase or decrease, thus not an overuse.
+	\end{itemize}
+	\textbf{Cons}
+	\begin{itemize}
+		\item Overuse of the decorator can result in overcomplicated systems.
+		\item Instantiation of concrete classes can become complicated if multiple decorators are used to wrap a single object.
+	\end{itemize}
 
 
-\question{Writing Functions}
-The functions necessary for the process of receiving a message from the application layer and writing it to the physical layer. This section contains the functions that represent the application layer, network layer, data link layer and physical layer.
-
-
-\question{Reading Functions}
-The functions necessary for the process of reading a message from the physical layer and passing it to the application layer. This section determines if the frame is data or an ACK, whether it has reached its final destination and if the frame is corrupt or not.
-
-\question{Forwarding Function}
-If a frame received has not reached its final destination, the forward frame function is used to determine the link the frame must be sent on and to send the frame onwards. 
-
-\question{Acknowledgement Functions}
- This section contains the functions for sending and receiving acknowledgments. If the frame received is an acknowledgement it is handled by the acknowledgement received function. The other function sends an acknowledgement for a frame received back to the sender.
- 
-\question{Timeout Functions}
-Contained here are function for initialising timers and determining which timer to start. While also handling the actions that must be taken when a timer expires. Every node may contain multiple links, as such a different timer can be initiated for each of these links. 
-
-\question{Initialisation Function}
-This section contains a single reboot node function. It is for initialising each of the nodes before sending and receiving of messages may begin. 
-\question{Miscellaneous Functions}
-Stored here are functions used in the operation of the sliding window protocol. They however are not specific to the sending and receiving process. 
-
-
-
-\question{assignment.h}
-This file defines the data structures and variables used in the operation of the sliding window protocol. Along with the prototpyes for the functions used.
-
-
-\question{ASSIGNMENT}
-This file defines the topology of the network that data is being sent on. \newline
-
-
-
-
-\noindent The log files contain the output from running the sliding window protocol for each node in the network. 
-
-
-\question{Algorithm Choice}
-Sliding window was chosen as it is more efficient than stop-and-wait. Stop-and-wait only allows the transmission of one message at a time. The next frame can only be sent once the ACK for the last one sent is received. With sliding window multiple frames can be sent before receiving an ACK. With the go-back-n approach chosen if the sender detects an error with frame n, it will reject all frames after n and the sender will retransmit all frames after frame n.  \\
-
-
-
-\question{Receiving}
-When a frame is read from the physical layer it can be a data frame or an acknowledgment frame.
-\question{Data}
-If it is a data frame a checksum is calculated and compared with the checksum stored in the frame.If they match the frame is passed to the network layer and an ACK is sent to the sender. If this is the intended destination for the message it will be passed to the application layer.
-\question{Acknowledgement}
-If it is an ACK all frames with a sequence number lower than that of the ACK are considered to be acknowledged. The timer for the now acknowledged frames are stopped. The frames are also removed from the window, to make room for more frames to be sent. Frames are then loaded from the buffer of frames and loaded into the window to be transmitted. 
-
-
-\question{Re-Transmission}
-There are three possibilities for the re-transmission of a frame. The first is the frame's checksum calculated at the destination did not match the checksum stored in the frame prior to sending. The second option is the frame received at the node is not at it's final destination and must be rerouted and sent onwards to reach its intended destination. The third option is the sequence number of the frame received is not the same as the one expected, but the frame is the same as the checksum matches. 
-
-\question{Corrupt Frame}
-Prior to writing the frame to the physical layer a checksum is calculated and stored in the frame. Once received by a node the checksum is recalculated and compared with the one stored in the frame.  If the checksums do not match the frame will be ignored and an ACK will not be sent to the sender, causing a timer to expire. Once the timer expires it will trigger the sender to retransmit the frames after the last ACK received.
-
-\question{Rerouting Frame}
-If the frame has not reached its intended destination; an ACK will be sent to the sender to signify it has been received, the link the frame needs to travel on will be found and the frame will be transmitted from the datalink layer to the physical layer. 
-
-\question{Unexpected Sequence Number}
-If the checksum matches and the frame is determined to be storing data the next step is to check the sequence number of the frame against the sequence number expected. If the sequence number is is one less than expected, this indicates the ACK for the previous frame was not received by the sender and the same frame was sent again. An ACK for the latest frame received is then sent back. If the sequence number is greater than expected it means one of the first frames of the many sent have not been received.The frames are dropped, which will result in the sender retransmitting the frames in the correct order once again, after the timer runs out. 
-
-
-\end{document}          
+%	     \begin{note}
+%	     	Discuss two plausible alternative design choices, and explain their pros and cons.
+%	     \end{note}
+\end{document}

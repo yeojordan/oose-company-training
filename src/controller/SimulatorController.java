@@ -65,7 +65,7 @@ public class SimulatorController
     {
 
         /* Prevent the simulation from running if the start or end year is invalid */
-        if( start > end )//|| start < 0 || end < 0 )
+        if( start > end || start < 0 || end < 0 )
         {
             throw new IllegalArgumentException("Invalid year for start or end of simulation");
         }

@@ -68,7 +68,7 @@ public class Company extends Property
     {
         double totalProfit = 0.0;
 
-        //bank.calculateProfit();
+
 
         if (owns != null)
         {
